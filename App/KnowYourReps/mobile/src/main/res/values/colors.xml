@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="democratColor">#2c6dd6</color>
+    <color name="republicanColor">#ed1d12</color>
+    <color name="otherPartyColor">#6c26c7</color>
+</resources>

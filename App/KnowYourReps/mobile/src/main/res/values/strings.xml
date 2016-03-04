@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Know Your Reps</string>
+    <string name="current_location_title_text">Use Current Location</string>
+    <string name="current_location_text">Location Pending</string>
+    <string name="zipLabel">Enter Zip Code</string>
+    <string name="action_settings">Settings</string>
+    <string name="zip_code_hint">Input Zip Code</string>
+    <string name="goto_representatives_button_text">See Representatives</string>
+    <string name="goto_2012_vote_view_text">See 2012 Vote View</string>
+    <string name="rep_name">Representative Name</string>
+    <string name="rep_email">representative@email.gov</string>
+    <string name="rep_website">repwebsite.gov</string>
+    <string name="rep_tweet">Most Recent Representative Tweet</string>
+    <string name="rep_seat">Seat</string>
+    <string name="rep_seat_senate">Senate</string>
+    <string name="rep_seat_house">House</string>
+    <string name="democrat_party_label">D</string>
+    <string name="independent_party_label">I</string>
+    <string name="republican_party_label">R</string>
+    <string name="other_party_label">O</string>
+    <string name="title_activity_display_detailed_representative">DisplayDetailedRepresentative
+    </string>
+</resources>
