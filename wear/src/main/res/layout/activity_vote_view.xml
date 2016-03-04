@@ -35,7 +35,7 @@ tools:deviceIds="wear_round">
         android:id="@+id/romneyName"
         android:text="@string/romney"
         android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/countyName"
+        android:layout_alignStart="@+id/voteViewTitle"
         android:background="@color/republicanColor" />
 
     <TextView
@@ -44,7 +44,7 @@ tools:deviceIds="wear_round">
         android:id="@+id/obamaName"
         android:text="@string/obama"
         android:layout_centerVertical="true"
-        android:layout_alignEnd="@+id/countyName"
+        android:layout_alignEnd="@+id/voteViewTitle"
         android:background="@color/democratColor" />
 
     <TextView

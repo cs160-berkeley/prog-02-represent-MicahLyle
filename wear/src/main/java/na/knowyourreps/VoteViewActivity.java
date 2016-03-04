@@ -13,7 +13,7 @@ public class VoteViewActivity extends Activity {
     private String[][] correspondingCounties = {{"Alameda"}, {"San Diego"}, {"Cass"}, {"Travis",
     "Williamson", "Hays"}, {"St. Louis"}};
     private HashMap<String, Integer[]> countyVotePercent;
-    private String otherCountyName = "Unknown County";
+    private String otherCountyName = "Unknown";
     private Integer[] alaVoteP = {18, 79};
     private Integer[] sDVoteP = {46, 52};
     private Integer[] cassVoteP = {63, 35};
@@ -57,7 +57,7 @@ public class VoteViewActivity extends Activity {
                 }
                 j += 1;
             }
-            countyName.setText(selectedCounty);
+            countyName.setText(selectedCounty + " County");
             if (foundMatch) {
                 romneyPercent.setText(Integer.toString(countyVotePercent.get(selectedCounty)[0])
                 + "%");
@@ -74,7 +74,7 @@ public class VoteViewActivity extends Activity {
             int countySelectionNum = new Random().nextInt(correspondingCounties[zipSelectionNum]
                 .length);
             String selectedCounty = correspondingCounties[zipSelectionNum][countySelectionNum];
-            countyName.setText(selectedCounty);
+            countyName.setText(selectedCounty + " County");
             romneyPercent.setText(Integer.toString(countyVotePercent.get(selectedCounty)[0]) + "%");
             obamaPercent.setText(Integer.toString(countyVotePercent.get(selectedCounty)[1]) + "%");
         }

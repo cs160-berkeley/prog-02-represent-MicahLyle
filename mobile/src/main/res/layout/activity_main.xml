@@ -83,6 +83,7 @@
         android:layout_height="wrap_content"
         android:text="@string/goto_2012_vote_view_text"
         android:id="@+id/goToVoteViewButton"
+        android:onClick="startWatchVoteView"
         android:layout_marginTop="27dp"
         android:background="#f52e38"
         android:layout_below="@+id/continueRepresentativesButton"

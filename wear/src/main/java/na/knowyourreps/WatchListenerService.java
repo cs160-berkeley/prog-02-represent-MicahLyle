@@ -34,10 +34,10 @@ public class WatchListenerService extends WearableListenerService {
             startActivity(intent);
         } else if (messageEvent.getPath().equalsIgnoreCase( VOTE_VIEW_ACTIVITY )) {
             String voteViewInfo = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-            Intent intent = new Intent(this, ScreenSlidePagerActivity.class );
+            Intent intent = new Intent(this, VoteViewActivity.class );
             intent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
             //you need to add this flag since you're starting a new activity from a service
-            intent.putExtra("VOTE_VIEW_INFORMATION", voteViewInfo);
+            intent.putExtra("zip", voteViewInfo);
             Log.d("T", "about to start watch VoteViewActivity");
             startActivity(intent);
         } else {
