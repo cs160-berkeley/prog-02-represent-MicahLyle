@@ -13,6 +13,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Bundle didWatchSendZip = getIntent().getExtras();
+        if (didWatchSendZip != null) {
+            TextView zipCodeField = (TextView) findViewById(R.id.enterZipCode);
+            RadioButton zipLocButton = (RadioButton) findViewById(R.id.enterZipCodeButton);
+            zipCodeField.setText(getIntent().getExtras().getString("zip_from_watch"));
+            zipLocButton.setChecked(true);
+        }
     }
 
     public void startRepresentativesView(View view) {

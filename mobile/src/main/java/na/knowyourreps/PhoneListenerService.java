@@ -21,15 +21,15 @@ public class PhoneListenerService extends WearableListenerService {
 
     //   WearableListenerServices don't need an iBinder or an onStartCommand: they just need an onMessageReceieved.
     private static final String REP_POSITION_PATH = "/send_rep_position";
+    private static final String RANDOM_ZIP_PATH = "/send_random_zip";
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d("T", "in PhoneListenerService, got: " + messageEvent.getPath());
         if( messageEvent.getPath().equalsIgnoreCase(REP_POSITION_PATH) ) {
 
-            // Value contains the String we sent over in WatchToPhoneService, "good job"
+            // Value contains the String we sent over in WatchToPhoneService
             String repPosition = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-
             Intent detailedViewIntent = new Intent(this, DisplayRepresentatives.class);
             detailedViewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             detailedViewIntent.putExtra("position", repPosition);
@@ -40,7 +40,14 @@ public class PhoneListenerService extends WearableListenerService {
             //''sending message to a Handler on a dead thread''... that's okay. but don't do this.
             // replace sending a toast with, like, starting a new activity or something.
             // who said skeleton code is untouchable? #breakCSconceptions
+        } else if (messageEvent.getPath().equalsIgnoreCase(RANDOM_ZIP_PATH) ) {
 
+            // Value contains the String we sent over in WatchToPhoneService
+            String zipCode = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            Intent detailedViewIntent = new Intent(this, MainActivity.class);
+            detailedViewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            detailedViewIntent.putExtra("zip_from_watch", zipCode);
+            startActivity(detailedViewIntent);
         } else {
             super.onMessageReceived( messageEvent );
         }

@@ -97,7 +97,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         Intent intent = new Intent(this, WatchToPhoneService.class);
         Button clickedButton = (Button) view.findViewById(R.id.goToPhoneDetailedViewButton);
         String buttonNumberStr = Integer.toString((int) clickedButton.getTag());
-        intent.putExtra("position", buttonNumberStr);
+        intent.putExtra("randomGeneratedZipCode", buttonNumberStr);
         startService(intent);
     }
 }

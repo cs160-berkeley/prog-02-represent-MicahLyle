@@ -31,7 +31,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
 
     private GoogleApiClient mWatchApiClient;
     private List<Node> nodes = new ArrayList<>();
-    private String repClickedPosition;
+    private String infoForWatch;
     final Service _this = this; // Thanks to https://piazza.com/class/ijddlu9pcyk1sk?cid=422
 
     @Override
@@ -63,7 +63,10 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
         // Which view do we want to display on the watch? Grab this info from INTENT
         // which was passed over when we called startService
         Bundle extras = intent.getExtras();
-        repClickedPosition = extras.getString("position");
+        infoForWatch = extras.getString("position");
+        if (infoForWatch == null) {
+            infoForWatch = extras.getString("randomGeneratedZipCode");
+        }
 
         return START_STICKY;
     }
@@ -80,7 +83,11 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                         Log.d("T", "found nodes");
                         // when we find a connected node, we populate the list declared above
                         // finally, we can send a message
-                        sendMessage("/send_rep_position", repClickedPosition);
+                        if (infoForWatch.length() == 5) {
+                            sendMessage("/send_random_zip", infoForWatch);
+                        } else {
+                            sendMessage("/send_rep_position", infoForWatch);
+                        }
                         Log.d("T", "sent");
                         _this.stopSelf();
                     }

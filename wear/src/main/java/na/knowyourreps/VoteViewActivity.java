@@ -1,7 +1,9 @@
 package na.knowyourreps;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -77,6 +79,11 @@ public class VoteViewActivity extends Activity {
             countyName.setText(selectedCounty + " County");
             romneyPercent.setText(Integer.toString(countyVotePercent.get(selectedCounty)[0]) + "%");
             obamaPercent.setText(Integer.toString(countyVotePercent.get(selectedCounty)[1]) + "%");
+
+            // Send Zip Code to Phone
+            Intent intent = new Intent(this, WatchToPhoneService.class);
+            intent.putExtra("randomGeneratedZipCode", Integer.toString(zipSelectionNum));
+            startService(intent);
         }
     }
 }
