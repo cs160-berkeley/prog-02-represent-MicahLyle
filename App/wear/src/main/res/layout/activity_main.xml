@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_gravity="center"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    tools:deviceIds="wear_round">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Input Info On Phone"
+        android:id="@+id/waitingStatusDialogOpenPhone"
+        android:layout_gravity="center_horizontal" />
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="30dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Or Shake Watch"
+        android:id="@+id/shakeWatchStatusText"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

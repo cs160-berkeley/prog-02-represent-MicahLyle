@@ -4,11 +4,11 @@ Briefly describe your app here.
 
 ## Authors
 
-FirstName LastName ([your_email@berkeley.edu](mailto:your_email@berkeley.edu))
+Micah Lyle ([micah.lyle@berkeley.edu](mailto:your_email@berkeley.edu))
 
 ## Demo Video
 
-See [your demo video title here] (https://link_to_your_video)
+See [Know Your Reps Demo Video] (https://www.youtube.com/watch?v=g0XNbuo3JCs&feature=youtu.be)
 
 ## Screenshots
 
@@ -16,5 +16,6 @@ See [your demo video title here] (https://link_to_your_video)
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Any other support
+* Different people on stackoverflow, especially the guy who did the watch shake
+* http://stackoverflow.com/questions/2317428/android-i-want-to-shake-it
+* You can see the different contributions in different files there are comments at the top depending on the file
