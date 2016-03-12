@@ -14,6 +14,13 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.List;
 
+// EmbeddedTweetsActivity
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.tweetui.TweetUtils;
+import com.twitter.sdk.android.tweetui.TweetView;
+
 /**
  * Created by Micah on 2/29/2016.
  */
@@ -45,6 +52,13 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
 
         TextView repWebsite = (TextView) convertView.findViewById(R.id.repWebsite);
         repWebsite.setText(rep.getWebsite());
+
+
+        // Setting up Tweets
+        // From https://docs.fabric.io/android/twitter/show-tweets.html
+
+        
+
 
         TextView repTweet = (TextView) convertView.findViewById(R.id.repTweet);
         repTweet.setText(rep.getTwitterId());
