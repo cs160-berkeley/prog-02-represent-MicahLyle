@@ -36,7 +36,7 @@
         <activity android:name=".VoteViewActivity"></activity>
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="832f74bee7f9818f2366255eca645fa67a61c5db" />
+            android:value="BAAjgUEIHHx5uQ5QNe0J4ALwT" />
     </application>
 
 </manifest>
