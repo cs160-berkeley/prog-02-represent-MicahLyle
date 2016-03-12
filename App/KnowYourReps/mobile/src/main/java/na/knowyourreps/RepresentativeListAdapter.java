@@ -47,22 +47,22 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
         repWebsite.setText(rep.getWebsite());
 
         TextView repTweet = (TextView) convertView.findViewById(R.id.repTweet);
-        repTweet.setText(rep.getMostRecentTweet());
+        repTweet.setText(rep.getTwitterId());
 
         ImageView repImage = (ImageView) convertView.findViewById(R.id.repImage);
-        String imageLocation = "drawable/" + rep.getImage();
+//        String imageLocation = "drawable/" + rep.getImage();
 
-        // Get Current List Position and save it as a tag for the Image View for onClick
+        //Get Current List Position and save it as a tag for the Image View for onClick
         repImage.setTag(position);
         repPictureIdMap.put(position, rep);
 
-        if (imageLocation.equals("drawable/boxer_image.PNG")) {
-            repImage.setImageResource(R.drawable.boxer_image);
-        } else if (imageLocation.equals("drawable/feinstein_image.PNG")) {
-            repImage.setImageResource(R.drawable.feinstein_image);
-        } else if (imageLocation.equals("drawable/lee_image.PNG")) {
-            repImage.setImageResource(R.drawable.lee_image);
-        }
+//        if (imageLocation.equals("drawable/boxer_image.PNG")) {
+//            repImage.setImageResource(R.drawable.boxer_image);
+//        } else if (imageLocation.equals("drawable/feinstein_image.PNG")) {
+//            repImage.setImageResource(R.drawable.feinstein_image);
+//        } else if (imageLocation.equals("drawable/lee_image.PNG")) {
+//            repImage.setImageResource(R.drawable.lee_image);
+//        }
 
         repImage.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,6 +15,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Representatives"
         android:id="@+id/repViewTitle"
+        android:visibility="invisible"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -24,11 +25,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="(Tap Pictures For More Info)"
         android:id="@+id/tapPicturesHelpText"
+        android:visibility="invisible"
         android:layout_below="@+id/repViewTitle"
         android:layout_centerHorizontal="true" />
 
     <View
         android:id="@+id/horizontal_rep_split_line"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height= "1dp"
         android:background="@android:color/background_dark"
@@ -36,9 +39,28 @@
         android:layout_marginTop="4dp"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text= "@string/representatives_loading_text"
+        android:id="@+id/repLoadingText"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/repLoadingProgressBar"
+        android:visibility="invisible"
+        android:layout_below="@+id/repLoadingText"
+        android:layout_centerHorizontal="true" />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         android:id="@+id/representativesListView"
         android:divider="@android:color/background_dark"
         android:dividerHeight="1dp"

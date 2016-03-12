@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 Intent intent = new Intent(this, DisplayRepresentatives.class);
                 intent.putExtra("latitude_from_phone_main", mLatitudeText);
                 intent.putExtra("longitude_from_phone_main", mLongitudeText);
+                intent.putExtra("source", "phone_location");
                 startActivity(intent);
             } else {
                 String locErrorMessage = getString(R.string.loc_error_message_1);
@@ -151,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             if (zipCodeField.getText().length() >= 5) {
                 Intent intent = new Intent(this, DisplayRepresentatives.class);
                 intent.putExtra("zip_from_phone_main", zipCodeField.getText());
+                intent.putExtra("source", "phone_zipcode");
                 startActivity(intent);
             } else {
                 String zipErrorMessage = getString(R.string.zip_code_error_1);
@@ -189,7 +191,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     private class RetrieveCountyTask extends AsyncTask<Void, Void, String> {
-        private Exception exception;
 
         protected void onPreExecute() {
             final ProgressBar locLoad = (ProgressBar) findViewById(R.id.locProgressBar);

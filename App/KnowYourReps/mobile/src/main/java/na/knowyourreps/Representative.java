@@ -8,29 +8,34 @@ import android.os.Parcelable;
  * Created by Micah on 2/29/2016.
  */
 public class Representative {
-    public Representative(String name, String email, String website, String image, String governmentSeat, String party, String endOfTerm, String[] committees, String[] recentBillsSponsored, String mostRecentTweet) {
+    public Representative(String name, String email, String website, String governmentSeat,
+                          String party, String endOfTerm, String[] committees,
+                          String[] recentBillsSponsored, String twitterId,
+                          String image, String bioguideId) {
         this.name = name;
         this.email = email;
         this.website = website;
-        this.image = image;
         this.governmentSeat = governmentSeat;
         this.endOfTerm = endOfTerm;
         this.committees = committees;
         this.recentBillsSponsored = recentBillsSponsored;
-        this.mostRecentTweet = mostRecentTweet;
+        this.twitterId = twitterId;
         this.party = party;
+        this.image = image;
+        this.bioguideId = bioguideId;
     }
 
     private String name;
     private String email;
     private String website;
-    private String image;
     private String governmentSeat;
     private String endOfTerm;
     private String[] committees;
     private String[] recentBillsSponsored;
-    private String mostRecentTweet;
+    private String twitterId;
     private String party;
+    private String image;
+    private String bioguideId;
 
     public String getName() {
         return this.name;
@@ -40,9 +45,6 @@ public class Representative {
     }
     public String getWebsite() {
         return this.website;
-    }
-    public String getImage() {
-        return this.image;
     }
     public String getGovernmentSeat() {
         return this.governmentSeat;
@@ -59,8 +61,14 @@ public class Representative {
     public String[] getRecentBillsSponsored() {
         return this.recentBillsSponsored;
     }
-    public String getMostRecentTweet() {
-        return this.mostRecentTweet;
+    public String getTwitterId() {
+        return this.twitterId;
+    }
+    public String getImage() {
+        return this.image;
+    }
+    public String getBioguideId() {
+        return this.bioguideId;
     }
 
     //Bundling Method
@@ -70,13 +78,14 @@ public class Representative {
         b.putString("name", name);
         b.putString("email", email);
         b.putString("website", website);
-        b.putString("image", image);
         b.putString("governmentSeat", governmentSeat);
         b.putString("endOfTerm", endOfTerm);
         b.putStringArray("committees", committees);
         b.putStringArray("recentBillsSponsored", recentBillsSponsored);
-        b.putString("mostRecentTweet", mostRecentTweet);
+        b.putString("twitterId", twitterId);
         b.putString("party", party);
+        b.putString("image", image);
+        b.putString("bioguideId", bioguideId);
         return b;
     }
 }

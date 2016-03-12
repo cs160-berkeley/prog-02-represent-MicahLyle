@@ -11,6 +11,11 @@
       </config>
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_display_representatives.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml">
         <config>
           <theme>@style/AppTheme</theme>
@@ -33,198 +38,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e39095b-2a10-4de6-8aea-35dcb236d0b9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/TwitterActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_twitter.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../api_keys.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/content_twitter.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/digits_1_10_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/fabric_1_3_10.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/google_maps_services_0_1_11.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_3_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/joda_time_2_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/okhttp_2_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/okio_1_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/picasso_2_5_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/retrofit_1_8_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/tweet_composer_1_0_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/tweet_ui_1_10_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/twitter_1_13_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/twitter_core_1_6_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/twitter_text_1_13_0.xml" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\.name" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\copyright\profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\gradle.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\animated_vector_drawable_23_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\appcompat_v7_23_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\design_23_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\mediarouter_v7_23_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_ads_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_analytics_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_appindexing_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_appinvite_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_appstate_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_auth_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_base_8_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_base_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_basement_8_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_basement_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_cast_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_drive_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_fitness_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_games_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_gcm_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_identity_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_location_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_maps_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_measurement_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_nearby_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_panorama_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_plus_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_safetynet_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_vision_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_wallet_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_wearable_8_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\play_services_wearable_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\recyclerview_v7_22_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\recyclerview_v7_23_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\support_annotations_22_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\support_annotations_23_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\support_v4_22_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\support_v4_23_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\support_vector_drawable_23_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\libraries\wearable_1_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\runConfigurations.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\.idea\workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\KnowYourReps.iml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\KnowYourReps\mobile\src\main\java\na\knowyourreps\GetCurrentLocation.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\gradle.properties" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\gradle\wrapper\gradle-wrapper.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\gradle\wrapper\gradle-wrapper.properties" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\gradlew" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\gradlew.bat" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\mobile.iml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\proguard-rules.pro" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\androidTest\java\na\knowyourreps\ApplicationTest.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\java\na\knowyourreps\CustomExpandableListAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\java\na\knowyourreps\DisplayDetailedRepresentative.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\java\na\knowyourreps\DisplayRepresentatives.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\java\na\knowyourreps\GetCurrentLocation.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\java\na\knowyourreps\MainActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\java\na\knowyourreps\PhoneListenerService.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\java\na\knowyourreps\PhoneToWatchService.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\java\na\knowyourreps\Representative.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\java\na\knowyourreps\RepresentativeListAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\drawable\boxer_image.PNG" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\drawable\feinstein_image.PNG" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\drawable\lee_image.PNG" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\drawable\representatives_background.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\layout\activity_display_detailed_representative.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\layout\activity_display_representatives.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\layout\activity_main.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\layout\custom_expandable_list_view_child.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\layout\custom_expandable_list_view_parent.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\layout\representative_row_of_list_view.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\layout\simple_text_view_for_regular_adapter.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\menu\menu_representatives_list.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\mipmap-hdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\mipmap-mdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\mipmap-xhdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\mipmap-xxhdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\mipmap-xxxhdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\values-v21\styles.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\values-w820dp\dimens.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\values\colors.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\values\dimens.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\values\strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\main\res\values\styles.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\mobile\src\test\java\na\knowyourreps\ExampleUnitTest.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\settings.gradle" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\proguard-rules.pro" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\java\na\knowyourreps\MainActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\java\na\knowyourreps\ScreenSlidePageFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\java\na\knowyourreps\ScreenSlidePagerActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\java\na\knowyourreps\ShakeEventListener.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\java\na\knowyourreps\VoteViewActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\java\na\knowyourreps\WatchListenerService.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\java\na\knowyourreps\WatchToPhoneService.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\java\na\knowyourreps\repsGridPagerAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\drawable\democrat.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\drawable\other.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\drawable\republican.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\layout\activity_main.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\layout\activity_screen_slide_pager.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\layout\activity_vote_view.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\layout\fragment_screen_slide_page.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\layout\rect_activity_main.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\layout\round_activity_main.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\mipmap-hdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\mipmap-mdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\mipmap-xhdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\mipmap-xxhdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\values-w820dp\dimens.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\values\colors.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\values\dimens.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\src\main\res\values\strings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\App\wear\wear.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/DisplayRepresentatives.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/DisplayRepresentatives.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/MainActivity.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/na/knowyourreps/MainActivity.java" afterPath="$PROJECT_DIR$/wear/src/main/java/na/knowyourreps/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/Representative.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/Representative.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/RepresentativeListAdapter.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/RepresentativeListAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/na/knowyourreps/WatchToPhoneService.java" afterPath="$PROJECT_DIR$/wear/src/main/java/na/knowyourreps/WatchToPhoneService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/build.gradle" afterPath="$PROJECT_DIR$/mobile/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/build.gradle" afterPath="$PROJECT_DIR$/wear/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/design_23_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/design_23_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_23_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_23_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/mobile.iml" afterPath="$PROJECT_DIR$/mobile/mobile.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_ads_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_ads_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appstate_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appstate_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_auth_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_auth_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_base_8_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_base_8_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_basement_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_basement_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_cast_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_cast_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_drive_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_drive_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_gcm_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_gcm_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_location_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_location_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_measurement_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_measurement_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_panorama_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_panorama_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_plus_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_plus_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wearable_8_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wearable_8_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wearable_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wearable_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_display_representatives.xml" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_display_representatives.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_22_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_22_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_23_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_23_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/wear.iml" afterPath="$PROJECT_DIR$/wear/wear.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/wearable_1_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/wearable_1_3_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="KnowYourReps.iws" />
@@ -252,101 +71,7 @@
     <favorites_list name="KnowYourReps" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="149" column="49" selection-start-line="149" selection-start-column="49" selection-end-line="149" selection-end-column="49" />
-              <folding>
-                <element signature="e#2818#4016#0" expanded="true" />
-                <element signature="e#4015#4016#0" expanded="true" />
-                <element signature="e#5898#5937#0" expanded="true" />
-                <element signature="e#6451#6487#0" expanded="true" />
-                <element signature="e#9609#9648#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="78" selection-start-line="4" selection-start-column="78" selection-end-line="4" selection-end-column="78" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wear/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="78" selection-start-line="6" selection-start-column="78" selection-end-line="6" selection-end-column="78" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.620689">
-              <caret line="49" column="50" selection-start-line="49" selection-start-column="50" selection-end-line="49" selection-end-column="50" />
-              <folding>
-                <element signature="e#272#305#0" expanded="true" />
-                <element signature="e#330#365#0" expanded="true" />
-                <element signature="e#391#426#0" expanded="true" />
-                <element signature="e#450#483#0" expanded="true" />
-                <element signature="e#758#776#0" expanded="true" />
-                <element signature="e#1363#1400#0" expanded="true" />
-                <element signature="e#1748#1766#0" expanded="true" />
-                <element signature="e#2896#2919#0" expanded="true" />
-                <element signature="e#3088#3106#0" expanded="true" />
-                <element signature="e#3280#3322#0" expanded="true" />
-                <element signature="e#3831#3865#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DisplayRepresentatives.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/DisplayRepresentatives.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="55" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TwitterActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/TwitterActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7072808">
-              <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.6666665">
-              <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -3071,16 +2796,18 @@
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/fragment_screen_slide_page.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/java/na/knowyourreps/WatchToPhoneService.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/GetCurrentLocation.java" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/RepresentativeListAdapter.java" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/DisplayRepresentatives.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/TwitterActivity.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/mobile/build.gradle" />
-        <option value="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/MainActivity.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/RepresentativeListAdapter.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/res/layout/activity_display_representatives.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/Representative.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/DisplayRepresentatives.java" />
       </list>
     </option>
   </component>
@@ -3116,10 +2843,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -3136,24 +2859,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="KnowYourReps" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="KnowYourReps" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manifests" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -3254,6 +2959,10 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3468,41 +3177,50 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.48294243" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4106383" sideWeight="0.5042644" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25425532" sideWeight="0.5127932" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.48081023" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32978722" sideWeight="0.48081023" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25425532" sideWeight="0.48720682" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.49573562" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.48294243" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.49573562" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.4936034" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25425532" sideWeight="0.5127932" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5042644" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17110874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25425532" sideWeight="0.48720682" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -3550,14 +3268,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/DisplayRepresentatives.java</url>
-          <line>2</line>
-          <properties />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="20" />
+      <option name="time" value="22" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -3582,7 +3293,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3590,9 +3300,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="71" selection-start-line="19" selection-start-column="71" selection-end-line="19" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3600,11 +3308,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1509#1510#0" expanded="false" />
-            <element signature="e#1536#1537#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3628,7 +3331,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3636,9 +3338,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3662,7 +3362,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3670,9 +3369,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3724,7 +3421,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="90" column="29" selection-start-line="90" selection-start-column="29" selection-end-line="90" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3769,7 +3465,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="86" column="39" selection-start-line="86" selection-start-column="39" selection-end-line="86" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3821,11 +3516,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1509#1510#0" expanded="false" />
-            <element signature="e#1536#1537#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3847,16 +3537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/RepresentativeListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/PhoneToWatchService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28239202">
@@ -3869,7 +3549,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3877,7 +3556,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="41" column="59" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3885,7 +3563,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3893,15 +3570,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6666665">
-          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3909,7 +3577,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29565218">
           <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3917,44 +3584,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="689" column="0" selection-start-line="689" selection-start-column="0" selection-end-line="689" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="149" column="49" selection-start-line="149" selection-start-column="49" selection-end-line="149" selection-end-column="49" />
-          <folding>
-            <element signature="e#2818#4016#0" expanded="true" />
-            <element signature="e#4015#4016#0" expanded="true" />
-            <element signature="e#5898#5937#0" expanded="true" />
-            <element signature="e#6451#6487#0" expanded="true" />
-            <element signature="e#9609#9648#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.620689">
-          <caret line="49" column="50" selection-start-line="49" selection-start-column="50" selection-end-line="49" selection-end-column="50" />
-          <folding>
-            <element signature="e#272#305#0" expanded="true" />
-            <element signature="e#330#365#0" expanded="true" />
-            <element signature="e#391#426#0" expanded="true" />
-            <element signature="e#450#483#0" expanded="true" />
-            <element signature="e#758#776#0" expanded="true" />
-            <element signature="e#1363#1400#0" expanded="true" />
-            <element signature="e#1748#1766#0" expanded="true" />
-            <element signature="e#2896#2919#0" expanded="true" />
-            <element signature="e#3088#3106#0" expanded="true" />
-            <element signature="e#3280#3322#0" expanded="true" />
-            <element signature="e#3831#3865#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3968,26 +3597,108 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-0.05052006">
           <caret line="4" column="78" selection-start-line="4" selection-start-column="78" selection-end-line="4" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4028103">
+          <caret line="81" column="38" selection-start-line="81" selection-start-column="35" selection-end-line="81" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/DisplayRepresentatives.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="55" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
+        <state vertical-scroll-proportion="-1.7109635">
+          <caret line="62" column="51" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#4823#4871#0" expanded="true" />
+            <element signature="e#6127#6166#0" expanded="true" />
+            <element signature="e#9546#9589#0" expanded="true" />
+            <element signature="e#10029#10072#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.7607974">
+          <caret line="143" column="60" selection-start-line="143" selection-start-column="60" selection-end-line="143" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_display_representatives.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3350785">
+          <caret line="45" column="36" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
+          <folding>
+            <element signature="e#272#305#0" expanded="true" />
+            <element signature="e#330#365#0" expanded="true" />
+            <element signature="e#391#426#0" expanded="true" />
+            <element signature="e#450#483#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/DisplayDetailedRepresentative.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11295681">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/RepresentativeListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48006645">
+          <caret line="29" column="53" selection-start-line="29" selection-start-column="53" selection-end-line="29" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/representative_row_of_list_view.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/Representative.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7807309">
+          <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/TwitterActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7072808">
-          <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.73421925">
+          <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20695652">
+          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
           <folding />
         </state>
       </provider>

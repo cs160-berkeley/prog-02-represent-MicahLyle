@@ -4,9 +4,13 @@
     <string name="current_location_text">Location Pending...</string>
     <string name="zip_code_error_1">Zip code should be at least 5 digits.</string>
     <string name="loc_error_message_1">Location unavailable, use zip code instead.</string>
+    <string name="repview_error_message_1">Representative Information could not be retrieved.
+        Please check the internet connection and try again. It\'s also possible the internet
+        service used to grab representative data is down. In that case, try again later</string>
     <string name="zipLabel">Enter Zip Code</string>
     <string name="action_settings">Settings</string>
     <string name="zip_code_hint">Input Zip Code</string>
+    <string name="representatives_loading_text">Loading Your Representatives...</string>
     <string name="goto_representatives_button_text">See Representatives</string>
     <string name="goto_2012_vote_view_text">See 2012 Vote View</string>
     <string name="rep_name">Representative Name</string>
