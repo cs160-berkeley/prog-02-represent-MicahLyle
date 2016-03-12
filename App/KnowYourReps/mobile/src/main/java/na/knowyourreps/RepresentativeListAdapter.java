@@ -3,6 +3,7 @@ package na.knowyourreps;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,28 +74,44 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
         holder.name.setText(rep.getName());
         holder.email.setText(rep.getEmail());
         holder.website.setText(rep.getWebsite());
-        //holder.image  // Do something with image later
 
-        holder.image.setTag(position);
-        repIdMap.put(position, rep);
+        // TODO: Set the correct Images
 
-        // Listener for Image Click
-        holder.image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DisplayDetailedRepresentative.class);
-                int tagNum = (Integer) v.getTag();
-                Bundle repBundle = repIdMap.get(tagNum).toBundle();
-                intent.putExtras(repBundle);
-                context.startActivity(intent);
-            }
-        });
+//        ImageView repImage = (ImageView) convertView.findViewById(R.id.repImage);
+//        repImage.setImageResource(R.drawable.boxer_image);
 
-        // Set party and chamber texts and center them
+
+//        holder.image.setImageResource(R.drawable.boxer_image);
+//
+//        holder.image.setTag(position);
+//        repIdMap.put(position, rep);
+//
+//        // Listener for Image Click
+//        holder.image.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context, DisplayDetailedRepresentative.class);
+//                int tagNum = (Integer) v.getTag();
+//                Bundle repBundle = repIdMap.get(tagNum).toBundle();
+//                intent.putExtras(repBundle);
+//                context.startActivity(intent);
+//            }
+//        });
+
+        // Set party and chamber texts
         holder.seat.setText(rep.getGovernmentSeat());
-        holder.seat.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        holder.party.setText(rep.getParty());
-        holder.party.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        String partyText = rep.getParty();
+        String viewedPartyText = " (" + partyText + ")";
+        holder.party.setText(viewedPartyText);
+        if (partyText.equals('R')) {
+            holder.party.setTextColor(ContextCompat.getColor(context, R.color.republicanColor));
+        } else if (partyText.equals('D')) {
+            holder.party.setTextColor(ContextCompat.getColor(context, R.color.democratColor));
+        } else {
+            holder.party.setTextColor(ContextCompat.getColor(context, R.color.otherPartyColor));
+        }
+        partyText = " (" + partyText + ")";
+        holder.party.setText(partyText);
 
         // Add the Compact Tweet View for the Representative
         holder.tweetFrame.addView(new CompactTweetView(context, rep.getMostRecentTweet()));
