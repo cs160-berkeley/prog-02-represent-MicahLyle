@@ -32,11 +32,6 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".TwitterActivity"
-            android:label="@string/title_activity_twitter"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAUhOJD5_-pg9FYAq9bWuShwy7CBMsNgPY"/>

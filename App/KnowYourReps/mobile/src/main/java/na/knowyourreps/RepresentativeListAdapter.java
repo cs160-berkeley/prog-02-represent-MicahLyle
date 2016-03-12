@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.twitter.sdk.android.tweetui.CompactTweetView;
 import com.twitter.sdk.android.tweetui.TweetView;
 
 import java.util.HashMap;
@@ -42,34 +43,43 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = (RelativeLayout) this.inflater.inflate(layoutResourceId, null);
+
+        // Thanks to https://www.codeofaninja.com/2013/09/android-viewholder-pattern-example.html
+        // (This is smoother scrolling)
+
+        ViewHolder holder;
+
+        if (convertView == null) {
+            // Inflate the layout
+            convertView = (RelativeLayout) this.inflater.inflate(layoutResourceId, null);
+
+            // Set up the View Holder
+            holder = new ViewHolder();
+            holder.name = (TextView) convertView.findViewById(R.id.repName);
+            holder.email = (TextView) convertView.findViewById(R.id.repEmail);
+            holder.website = (TextView) convertView.findViewById(R.id.repWebsite);
+            holder.seat = (TextView) convertView.findViewById(R.id.repSeat);
+            holder.party = (TextView) convertView.findViewById(R.id.repParty);
+            holder.image = (ImageView) convertView.findViewById(R.id.repImage);
+            holder.tweetFrame = (FrameLayout) convertView.findViewById(R.id.tweetFrame);
+
+            // Store the View Holder within the view
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
         rep = getItem(position);
+        holder.name.setText(rep.getName());
+        holder.email.setText(rep.getEmail());
+        holder.website.setText(rep.getWebsite());
+        //holder.image  // Do something with image later
 
-        TextView repName = (TextView) convertView.findViewById(R.id.repName);
-        repName.setText(rep.getName());
-
-        TextView repEmail = (TextView) convertView.findViewById(R.id.repEmail);
-        repEmail.setText(rep.getEmail());
-
-        TextView repWebsite = (TextView) convertView.findViewById(R.id.repWebsite);
-        repWebsite.setText(rep.getWebsite());
-
-        ImageView repImage = (ImageView) convertView.findViewById(R.id.repImage);
-//        String imageLocation = "drawable/" + rep.getImage();
-
-        //Get Current List Position and save it as a tag for the Image View for onClick
-        repImage.setTag(position);
+        holder.image.setTag(position);
         repIdMap.put(position, rep);
 
-//        if (imageLocation.equals("drawable/boxer_image.PNG")) {
-//            repImage.setImageResource(R.drawable.boxer_image);
-//        } else if (imageLocation.equals("drawable/feinstein_image.PNG")) {
-//            repImage.setImageResource(R.drawable.feinstein_image);
-//        } else if (imageLocation.equals("drawable/lee_image.PNG")) {
-//            repImage.setImageResource(R.drawable.lee_image);
-//        }
-
-        repImage.setOnClickListener(new View.OnClickListener() {
+        // Listener for Image Click
+        holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DisplayDetailedRepresentative.class);
@@ -80,16 +90,25 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
             }
         });
 
-        // TODO: Look into getting pictures to render better and improving scrolling (see up top)
-        final FrameLayout tweetFrame = (FrameLayout) convertView.findViewById(R.id.tweetFrame);
-        tweetFrame.addView(new TweetView(context, rep.getMostRecentTweet()));
+        // Set party and chamber texts and center them
+        holder.seat.setText(rep.getGovernmentSeat());
+        holder.seat.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        holder.party.setText(rep.getParty());
+        holder.party.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
-        TextView repSeat = (TextView) convertView.findViewById(R.id.repSeat);
-        repSeat.setText(rep.getGovernmentSeat());
-
-        TextView repParty = (TextView) convertView.findViewById(R.id.repParty);
-        repParty.setText(rep.getParty());
+        // Add the Compact Tweet View for the Representative
+        holder.tweetFrame.addView(new CompactTweetView(context, rep.getMostRecentTweet()));
 
         return convertView;
+    }
+
+    private static class ViewHolder {
+        TextView name;
+        TextView email;
+        TextView website;
+        TextView seat;
+        TextView party;
+        ImageView image;
+        FrameLayout tweetFrame;
     }
 }

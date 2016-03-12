@@ -90,13 +90,10 @@ public class Representative {
     public Bundle toBundle() {
         Bundle b = new Bundle();
         b.putString("name", name);
-        b.putString("email", email);
-        b.putString("website", website);
         b.putString("governmentSeat", governmentSeat);
         b.putString("endOfTerm", endOfTerm);
         b.putStringArray("committees", committees);
         b.putStringArray("recentBillsSponsored", recentBillsSponsored);
-        b.putString("twitterId", twitterId);
         b.putString("party", party);
         b.putString("image", image);
         b.putString("bioguideId", bioguideId);
