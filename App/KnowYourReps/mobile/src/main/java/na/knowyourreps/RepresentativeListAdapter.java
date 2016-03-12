@@ -3,26 +3,21 @@ package na.knowyourreps;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.twitter.sdk.android.tweetui.TweetView;
+
 import java.util.HashMap;
 import java.util.List;
 
 // Getting Twitter to work
-import com.twitter.sdk.android.core.AppSession;
-import com.twitter.sdk.android.core.Callback;
-import com.twitter.sdk.android.core.Result;
-import com.twitter.sdk.android.core.TwitterApiClient;
-import com.twitter.sdk.android.core.TwitterCore;
-import com.twitter.sdk.android.core.models.Tweet;
-import com.twitter.sdk.android.core.TwitterException;
-import com.twitter.sdk.android.tweetui.TweetView;
 
 /**
  * Created by Micah on 2/29/2016.
@@ -85,8 +80,9 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
             }
         });
 
-        TweetView repTweet = (TweetView) convertView.findViewById(R.id.repTweet);
-        repTweet.setTweet(rep.getMostRecentTweet());
+        // TODO: Look into getting pictures to render better and improving scrolling (see up top)
+        final FrameLayout tweetFrame = (FrameLayout) convertView.findViewById(R.id.tweetFrame);
+        tweetFrame.addView(new TweetView(context, rep.getMostRecentTweet()));
 
         TextView repSeat = (TextView) convertView.findViewById(R.id.repSeat);
         repSeat.setText(rep.getGovernmentSeat());

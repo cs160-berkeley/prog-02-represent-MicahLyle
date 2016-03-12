@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:twittersdk="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding ="5dip"
+    android:padding="5dip"
     android:background="@drawable/representatives_background">
 
     <!-- Row of List Left Side Representative Image -->
@@ -75,12 +74,6 @@
         android:layout_toEndOf="@+id/repPictureLayout"
         android:paddingTop="2sp"
         android:id="@+id/tweetFrame">
-
-        <com.twitter.sdk.android.tweetui.TweetView
-            android:id="@+id/repTweet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            twittersdk:tw__tweet_id="510908133917487104"/>
 
     </FrameLayout>
 

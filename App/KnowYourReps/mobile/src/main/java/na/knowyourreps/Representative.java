@@ -1,8 +1,6 @@
 package na.knowyourreps;
 
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import com.twitter.sdk.android.core.models.Tweet;
 

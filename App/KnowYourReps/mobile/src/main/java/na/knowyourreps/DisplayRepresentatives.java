@@ -3,15 +3,15 @@ package na.knowyourreps;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.AppSession;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -20,8 +20,6 @@ import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.models.Tweet;
-import com.twitter.sdk.android.Twitter;
-import io.fabric.sdk.android.Fabric;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +33,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class DisplayRepresentatives extends AppCompatActivity {
 
@@ -74,6 +74,7 @@ public class DisplayRepresentatives extends AppCompatActivity {
             longitude = receivedBundle.getString("longitude_from_phone_main");
             sunlightStart = sunlightPrecise;
             sunlightAppend = latitude +"&"+ "longitude=" + longitude + "&apikey=" + sunlightApiKey;
+            // TODO: Get Zip Codes to work when rendering representatives
         } else if (receivedBundle.getString("source").equals("phone_zipcode")) {
             zipcode = receivedBundle.getString("zipcode_from_phone_main");
             sunlightStart = sunlightZip;
