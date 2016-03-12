@@ -77,26 +77,22 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
 
         // TODO: Set the correct Images
 
-//        ImageView repImage = (ImageView) convertView.findViewById(R.id.repImage);
-//        repImage.setImageResource(R.drawable.boxer_image);
+        holder.image.setImageResource(R.drawable.boxer_image);
 
+        holder.image.setTag(position);
+        repIdMap.put(position, rep);
 
-//        holder.image.setImageResource(R.drawable.boxer_image);
-//
-//        holder.image.setTag(position);
-//        repIdMap.put(position, rep);
-//
-//        // Listener for Image Click
-//        holder.image.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, DisplayDetailedRepresentative.class);
-//                int tagNum = (Integer) v.getTag();
-//                Bundle repBundle = repIdMap.get(tagNum).toBundle();
-//                intent.putExtras(repBundle);
-//                context.startActivity(intent);
-//            }
-//        });
+        // Listener for Image Click
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DisplayDetailedRepresentative.class);
+                int tagNum = (Integer) v.getTag();
+                Bundle repBundle = repIdMap.get(tagNum).toBundle();
+                intent.putExtras(repBundle);
+                context.startActivity(intent);
+            }
+        });
 
         // Set party and chamber texts
         holder.seat.setText(rep.getGovernmentSeat());

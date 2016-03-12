@@ -3,18 +3,18 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="5dip"
+    android:padding="3dip"
     android:background="@drawable/representatives_background">
 
     <!-- Representative Image on the Left -->
     <ImageView
         android:layout_alignParentStart = "true"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_marginEnd="3dip"
         android:id="@+id/repImage"
         android:src="@drawable/boxer_image"
-        android:layout_width="85dip"
-        android:layout_height="85dip" />
+        android:layout_width="90dip"
+        android:layout_height="90dip" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -22,8 +22,7 @@
         android:id="@+id/repNamePartyLayout"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/repImage"
-        android:layout_toEndOf="@+id/repImage"
-        android:layout_marginEnd="3dip">
+        android:layout_toEndOf="@+id/repImage">
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,7 +75,7 @@
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/repWebsite"
+        android:layout_below="@id/repWebsite"
         android:paddingTop="2sp"
         android:id="@+id/tweetFrame">
 
