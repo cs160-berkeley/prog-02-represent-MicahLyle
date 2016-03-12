@@ -3,8 +3,9 @@ Email: micah.lyle@berkeley.edu
 API Key: 2895ee1a05b74c64bb0bead86028d3ea
 
 Twitter
-Consumer Key (API Key): XbKh2NUqjH29H6HCU991PqW5O
-Consumer Secret (API Secret): 03o7QaIyrvYkK38w7cyaNSFuJXvfOeQ988UZJUh2xasnPJmrwh
+Fabric
+Consumer Key (API Key): BAAjgUEIHHx5uQ5QNe0J4ALwT
+Consumer Secret (API Secret): WjawZD04CYeOGJFyusv6GEyH18z1kRAgBsQtrkXnUQzbzBtz8K
 Access Level: Read and write
 Owner: lyle7777
 Owner ID: 706715500886118400

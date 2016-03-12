@@ -18,6 +18,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
 import io.fabric.sdk.android.Fabric;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,9 +36,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         GoogleApiClient.OnConnectionFailedListener {
 
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
-    private static final String TWITTER_KEY = "XbKh2NUqjH29H6HCU991PqW5O";
-    private static final String TWITTER_SECRET = "03o7QaIyrvYkK38w7cyaNSFuJXvfOeQ988UZJUh2xasnPJmrwh";
-
+    private static final String TWITTER_KEY = "BAAjgUEIHHx5uQ5QNe0J4ALwT";
+    private static final String TWITTER_SECRET = "WjawZD04CYeOGJFyusv6GEyH18z1kRAgBsQtrkXnUQzbzBtz8K";
 
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_main);
 
         // Create an instance of GoogleAPIClient.
