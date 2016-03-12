@@ -36,6 +36,7 @@ public class Representative {
     private String party;
     private String image;
     private String bioguideId;
+    private Long mostRecentTweetId;
 
     public String getName() {
         return this.name;
@@ -69,6 +70,9 @@ public class Representative {
     }
     public String getBioguideId() {
         return this.bioguideId;
+    }
+    public void setMostRecentTweetId(Long id) {
+        mostRecentTweetId = id;
     }
 
     //Bundling Method

@@ -22,6 +22,7 @@ import com.twitter.sdk.android.core.TwitterApiClient;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.models.Tweet;
 import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.tweetui.TweetView;
 
 /**
  * Created by Micah on 2/29/2016.
@@ -117,8 +118,7 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
             }
         });
 
-        TextView repTweet = (TextView) convertView.findViewById(R.id.repTweet);
-        repTweet.setText(currentRepTweet);
+        TweetView repTweet = (TweetView) convertView.findViewById(R.id.repTweet);
 
         TextView repSeat = (TextView) convertView.findViewById(R.id.repSeat);
         repSeat.setText(rep.getGovernmentSeat());

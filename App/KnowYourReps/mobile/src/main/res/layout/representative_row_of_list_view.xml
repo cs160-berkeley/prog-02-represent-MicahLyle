@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:twittersdk="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -67,15 +68,20 @@
         android:textSize="14sp"
         android:paddingTop="2sp"/>
 
-    <TextView
+    <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/repTweet"
         android:layout_below="@+id/repWebsite"
-        android:background="@color/tweetBackgroundColor"
         android:layout_toEndOf="@+id/repPictureLayout"
-        android:text="@string/rep_tweet"
         android:paddingTop="2sp"
-        android:textSize="10sp"/>
+        android:id="@+id/tweetFrame">
+
+        <com.twitter.sdk.android.tweetui.TweetView
+            android:id="@+id/repTweet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            twittersdk:tw__tweet_id="510908133917487104"/>
+
+    </FrameLayout>
 
 </RelativeLayout>

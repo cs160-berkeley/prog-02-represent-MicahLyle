@@ -11,6 +11,14 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.twitter.sdk.android.core.AppSession;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterApiClient;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.models.Tweet;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +38,9 @@ public class DisplayRepresentatives extends AppCompatActivity {
     private Context context;
     private int numRepsInView;
     private List<Representative> repList;
+    private List<Representative> displayedRepList;
     private HashMap<Integer, Representative> repsToIds;
+    private HashMap<Integer, Long> repIdsToTweetIds;
     private String sunlightPrecise = "https://congress.api.sunlightfoundation.com/legislators/locate?latitude=";
     private String sunlightZip = "https://congress.api.sunlightfoundation.com/legislators/locate?zip=";
     private String sunlightStart;
@@ -69,7 +79,7 @@ public class DisplayRepresentatives extends AppCompatActivity {
         listViewRepresentatives = (ListView) findViewById(R.id.representativesListView);
         listViewRepresentatives.setVisibility(View.VISIBLE);
         listViewRepresentatives.setAdapter(new RepresentativeListAdapter(context,
-                R.layout.representative_row_of_list_view, repList));
+                R.layout.representative_row_of_list_view, displayedRepList));
 
         // TODO: Set this up later using an intent sent to an already running activity
         // http://stackoverflow.com/questions/4042434/convert-arraylist-containing-strings-to-an-array-of-strings-in-java
@@ -89,7 +99,7 @@ public class DisplayRepresentatives extends AppCompatActivity {
             String sendOverBlueToothInfoString = "";
             sendOverBlueToothInfoString += Integer.toString(numRepsInView);
             sendOverBlueToothInfoString += "__";
-            for (Representative rep:repList) {
+            for (Representative rep:displayedRepList) {
                 sendOverBlueToothInfoString += rep.getName();
                 sendOverBlueToothInfoString += "__";
                 sendOverBlueToothInfoString += rep.getParty();
@@ -100,6 +110,46 @@ public class DisplayRepresentatives extends AppCompatActivity {
             startService(sendIntent);
         }
 
+    }
+
+    private void setupTweet(final int repPosition) {
+
+        // Setting up Tweet for each representative
+        // From https://docs.fabric.io/android/twitter/show-tweets.html
+        // Also https://docs.fabric.io/android/twitter/access-rest-api.html
+        // https://twittercommunity.com/t/test-run-with-fabric-android/60673
+
+        TwitterCore.getInstance().logInGuest(new Callback<AppSession>() {
+            @Override
+            public void success(Result<AppSession> appSessionResult) {
+                AppSession session = appSessionResult.data;
+                TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient(session);
+                twitterApiClient.getStatusesService().userTimeline(null,
+                        repsToIds.get(repPosition).getTwitterId(), 1, null, null, false,
+                        false, false, true, new Callback<List<Tweet>>() {
+                            @Override
+                            public void success(Result<List<Tweet>> listResult) {
+                                for (Tweet tweet : listResult.data) {
+                                    Log.d("fabricstuff", "result: " + tweet.text + "  " + tweet.createdAt);
+                                    repIdsToTweetIds.put(repPosition, tweet.getId());
+                                }
+                            }
+
+                            @Override
+                            public void failure(TwitterException e) {
+                                e.printStackTrace();
+                                // Put -1L when there the tweet is unable to be accessed
+                                repIdsToTweetIds.put(repPosition, -1L);
+                            }
+                        });
+            }
+
+            @Override
+            public void failure(TwitterException e) {
+                e.printStackTrace();
+                repIdsToTweetIds.put(repPosition, -1L);
+            }
+        });
     }
 
     private class RetrieveRepresentativeInfo extends AsyncTask<Void, Void, String> {
@@ -183,7 +233,25 @@ public class DisplayRepresentatives extends AppCompatActivity {
                     int i = 0;
                     for (Representative r: repList) {
                         repsToIds.put(i, r);
+                        i += 1;
                     }
+
+                    //Set up the rep list to display on the adapter
+                    displayedRepList = new ArrayList<>();
+
+                    //Set up Hash Map for Tweets stored along with Rep IDs
+                    repIdsToTweetIds = new HashMap<>();
+
+                    //For each rep, grab the ID of the most recent tweet and add it to the representative
+                    i = 0;
+                    for (Representative rep : repList) {
+                        setupTweet(i);
+                        rep.setMostRecentTweetId(repIdsToTweetIds.get(i));
+                        displayedRepList.add(rep);
+                        i += 1;
+                    }
+
+                    repList = null;
 
                     response = "success";
 
