@@ -55,6 +55,15 @@
         android:visibility="invisible"
         android:layout_centerHorizontal="true" />
 
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locProgressBar"
+        android:visibility="invisible"
+        android:layout_below="@+id/radioGroup"
+        android:layout_centerHorizontal="true" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,6 +71,7 @@
         android:ems="10"
         android:hint="@string/zip_code_hint"
         android:id="@+id/enterZipCode"
+        android:visibility="invisible"
         android:layout_alignBottom="@+id/locationInfoText"
         android:imeActionLabel="@string/zipLabel"
         android:layout_centerHorizontal="true" />
@@ -73,6 +83,7 @@
         android:id="@+id/continueRepresentativesButton"
         android:onClick="startRepresentativesView"
         android:background="#6cadc7"
+        android:visibility="invisible"
         android:layout_below="@+id/locationInfoText"
         android:layout_alignStart="@+id/enterZipCode"
         android:layout_marginTop="41dp"
@@ -86,6 +97,7 @@
         android:onClick="startWatchVoteView"
         android:layout_marginTop="27dp"
         android:background="#f52e38"
+        android:visibility="invisible"
         android:layout_below="@+id/continueRepresentativesButton"
         android:layout_alignEnd="@+id/continueRepresentativesButton"
         android:layout_alignStart="@+id/continueRepresentativesButton" />

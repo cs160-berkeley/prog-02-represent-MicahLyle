@@ -5,8 +5,8 @@
     <uses-feature android:name="android.hardware.type.watch" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -36,6 +36,9 @@
         </service>
 
         <activity android:name=".VoteViewActivity"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="832f74bee7f9818f2366255eca645fa67a61c5db" />
     </application>
 
 </manifest>
