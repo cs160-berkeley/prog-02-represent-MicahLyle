@@ -85,40 +85,8 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
             }
         });
 
-        // Setting up Tweets
-        // From https://docs.fabric.io/android/twitter/show-tweets.html
-        // Also https://docs.fabric.io/android/twitter/access-rest-api.html
-        // https://twittercommunity.com/t/test-run-with-fabric-android/60673
-
-        TwitterCore.getInstance().logInGuest(new Callback<AppSession>() {
-            @Override
-            public void success(Result<AppSession> appSessionResult) {
-                AppSession session = appSessionResult.data;
-                TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient(session);
-                twitterApiClient.getStatusesService().userTimeline(null, rep.getTwitterId(), 1, null, null, false, false, false, true, new Callback<List<Tweet>>() {
-                    @Override
-                    public void success(Result<List<Tweet>> listResult) {
-                        for (Tweet tweet : listResult.data) {
-                            Log.d("fabricstuff", "result: " + tweet.text + "  " + tweet.createdAt);
-                            currentRepTweet = tweet.text;
-                        }
-                    }
-
-                    @Override
-                    public void failure(TwitterException e) {
-                        e.printStackTrace();
-                        currentRepTweet = "Latest tweet unavailable";
-                    }
-                });
-            }
-
-            @Override
-            public void failure(TwitterException e) {
-                e.printStackTrace();
-            }
-        });
-
         TweetView repTweet = (TweetView) convertView.findViewById(R.id.repTweet);
+        repTweet.setTweet(rep.getMostRecentTweet());
 
         TextView repSeat = (TextView) convertView.findViewById(R.id.repSeat);
         repSeat.setText(rep.getGovernmentSeat());

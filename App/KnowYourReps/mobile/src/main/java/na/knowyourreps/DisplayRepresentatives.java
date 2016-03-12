@@ -3,6 +3,7 @@ package na.knowyourreps;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,9 +16,12 @@ import com.twitter.sdk.android.core.AppSession;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterApiClient;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.Twitter;
+import io.fabric.sdk.android.Fabric;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +38,10 @@ import java.util.List;
 
 public class DisplayRepresentatives extends AppCompatActivity {
 
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "BAAjgUEIHHx5uQ5QNe0J4ALwT";
+    private static final String TWITTER_SECRET = "WjawZD04CYeOGJFyusv6GEyH18z1kRAgBsQtrkXnUQzbzBtz8K";
+
     private ListView listViewRepresentatives;
     private Context context;
     private int numRepsInView;
@@ -41,6 +49,7 @@ public class DisplayRepresentatives extends AppCompatActivity {
     private List<Representative> displayedRepList;
     private HashMap<Integer, Representative> repsToIds;
     private HashMap<Integer, Long> repIdsToTweetIds;
+    private HashMap<Integer, Tweet> repsToTweets;
     private String sunlightPrecise = "https://congress.api.sunlightfoundation.com/legislators/locate?latitude=";
     private String sunlightZip = "https://congress.api.sunlightfoundation.com/legislators/locate?zip=";
     private String sunlightStart;
@@ -51,6 +60,7 @@ public class DisplayRepresentatives extends AppCompatActivity {
     private String latitude;
     private String longitude;
     private String zipcode;
+    private static final int MAX_COUNTDOWN_TIMER_ITERATIONS = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +84,22 @@ public class DisplayRepresentatives extends AppCompatActivity {
     }
 
     public void onRepresentativeInfoReceived() {
+
+        //Set up the rep list to display on the adapter
+        displayedRepList = new ArrayList<>();
+
+        // Add Tweet IDs which should now be ready to a new representatives list
+        int i = 0;
+        for (Representative rep : repList) {
+            rep.setMostRecentTweetId(repIdsToTweetIds.get(i));
+            if (repIdsToTweetIds.get(i) != -1L) {
+                rep.setMostRecentTweet(repsToTweets.get(i));    // Add tweet if present
+            }
+            displayedRepList.add(rep);
+            i += 1;
+        }
+
+        repList = null;     // Don't need this anymore
 
         // Start up Phone View
         listViewRepresentatives = (ListView) findViewById(R.id.representativesListView);
@@ -112,44 +138,81 @@ public class DisplayRepresentatives extends AppCompatActivity {
 
     }
 
-    private void setupTweet(final int repPosition) {
+    private void setupTweets() {
 
         // Setting up Tweet for each representative
         // From https://docs.fabric.io/android/twitter/show-tweets.html
         // Also https://docs.fabric.io/android/twitter/access-rest-api.html
         // https://twittercommunity.com/t/test-run-with-fabric-android/60673
-
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
         TwitterCore.getInstance().logInGuest(new Callback<AppSession>() {
             @Override
             public void success(Result<AppSession> appSessionResult) {
-                AppSession session = appSessionResult.data;
-                TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient(session);
-                twitterApiClient.getStatusesService().userTimeline(null,
-                        repsToIds.get(repPosition).getTwitterId(), 1, null, null, false,
-                        false, false, true, new Callback<List<Tweet>>() {
-                            @Override
-                            public void success(Result<List<Tweet>> listResult) {
-                                for (Tweet tweet : listResult.data) {
-                                    Log.d("fabricstuff", "result: " + tweet.text + "  " + tweet.createdAt);
-                                    repIdsToTweetIds.put(repPosition, tweet.getId());
-                                }
-                            }
-
-                            @Override
-                            public void failure(TwitterException e) {
-                                e.printStackTrace();
-                                // Put -1L when there the tweet is unable to be accessed
-                                repIdsToTweetIds.put(repPosition, -1L);
-                            }
-                        });
+                for (int i = 0; i < numRepsInView; i++) {
+                    grabIndividualTweetId(i, appSessionResult);
+                }
             }
 
             @Override
             public void failure(TwitterException e) {
                 e.printStackTrace();
-                repIdsToTweetIds.put(repPosition, -1L);
             }
         });
+    }
+
+    private void grabIndividualTweetId(final int repPosition, Result<AppSession> appSessionResult) {
+        AppSession session = appSessionResult.data;
+        TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient(session);
+        twitterApiClient.getStatusesService().userTimeline(null,
+                repsToIds.get(repPosition).getTwitterId(), 1, null, null, false,
+                false, false, true, new Callback<List<Tweet>>() {
+                    @Override
+                    public void success(Result<List<Tweet>> listResult) {
+                        for (Tweet tweet : listResult.data) {
+                            Log.d("fabricstuff", "result: " + tweet.text + "  " + tweet.createdAt);
+                            repIdsToTweetIds.put(repPosition, tweet.getId());
+                            repsToTweets.put(repPosition, tweet);
+                            if (repIdsToTweetIds.size() == numRepsInView) {
+                                tweetServicesFinished();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void failure(TwitterException e) {
+                        e.printStackTrace();
+                        // Put -1L when there the tweet is unable to be accessed
+                        repIdsToTweetIds.put(repPosition, -1L);
+                        if (repIdsToTweetIds.size() == numRepsInView) {
+                            tweetServicesFinished();
+                        }
+                    }
+                });
+
+    }
+
+    private void tweetServicesFinished() {
+        final ProgressBar repLoad = (ProgressBar) findViewById(R.id.repLoadingProgressBar);
+        final TextView repLoadText = (TextView) findViewById(R.id.repLoadingText);
+        final TextView repTitle = (TextView) findViewById(R.id.repViewTitle);
+        final TextView repViewHelpText = (TextView) findViewById(R.id.tapPicturesHelpText);
+        final View topDividerBar = findViewById(R.id.horizontal_rep_split_line);
+
+        if (!(repLoadText.getText().equals(getString(R.string.repview_error_message_1)) ||
+                repLoadText.getText().equals(""))) {
+
+            repLoad.setVisibility(View.INVISIBLE);
+            repLoadText.setVisibility(View.INVISIBLE);
+            repTitle.setVisibility(View.VISIBLE);
+            repViewHelpText.setVisibility(View.VISIBLE);
+            topDividerBar.setVisibility(View.VISIBLE);
+
+            onRepresentativeInfoReceived();
+
+        } else {
+            repLoadText.setText(getString(R.string.repview_error_message_1));
+        }
     }
 
     private class RetrieveRepresentativeInfo extends AsyncTask<Void, Void, String> {
@@ -236,47 +299,32 @@ public class DisplayRepresentatives extends AppCompatActivity {
                         i += 1;
                     }
 
-                    //Set up the rep list to display on the adapter
-                    displayedRepList = new ArrayList<>();
-
-                    //Set up Hash Map for Tweets stored along with Rep IDs
+                    //Set up Hash Map for Tweet Ids stored along with Rep IDs
                     repIdsToTweetIds = new HashMap<>();
 
-                    //For each rep, grab the ID of the most recent tweet and add it to the representative
-                    i = 0;
-                    for (Representative rep : repList) {
-                        setupTweet(i);
-                        rep.setMostRecentTweetId(repIdsToTweetIds.get(i));
-                        displayedRepList.add(rep);
-                        i += 1;
-                    }
+                    //Set up Hash Map for Tweets stored along with Rep IDs
+                    repsToTweets = new HashMap<>();
 
-                    repList = null;
+                    //For each rep, grab the ID of the most recent tweet and add it to the representative
+                    setupTweets();
 
                     response = "success";
 
                 } catch (JSONException e) {
-                    response = "";  // Just give an empty response since location still worked
+                    response = "";
                 }
             }
-            final ProgressBar repLoad = (ProgressBar) findViewById(R.id.repLoadingProgressBar);
+
             final TextView repLoadText = (TextView) findViewById(R.id.repLoadingText);
-            final TextView repTitle = (TextView) findViewById(R.id.repViewTitle);
-            final TextView repViewHelpText = (TextView) findViewById(R.id.tapPicturesHelpText);
-            final View topDividerBar = (View) findViewById(R.id.horizontal_rep_split_line);
 
-            if (!(response.equals(getString(R.string.repview_error_message_1)) ||
-                response.equals(""))) {
-                repLoad.setVisibility(View.INVISIBLE);
-                repLoadText.setVisibility(View.INVISIBLE);
-                repTitle.setVisibility(View.VISIBLE);
-                repViewHelpText.setVisibility(View.VISIBLE);
-                topDividerBar.setVisibility(View.VISIBLE);
+            if (response.equals(getString(R.string.repview_error_message_1)) ||
+                response.equals("")) {
 
-                onRepresentativeInfoReceived();
-
-            } else {
                 repLoadText.setText(getString(R.string.repview_error_message_1));
+            }
+
+            if (repIdsToTweetIds.size() == 2) {
+                onRepresentativeInfoReceived();
             }
         }
     }

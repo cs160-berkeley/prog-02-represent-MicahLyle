@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.twitter.sdk.android.core.models.Tweet;
+
 /**
  * Created by Micah on 2/29/2016.
  */
@@ -37,6 +39,7 @@ public class Representative {
     private String image;
     private String bioguideId;
     private Long mostRecentTweetId;
+    private Tweet mostRecentTweet;
 
     public String getName() {
         return this.name;
@@ -71,8 +74,17 @@ public class Representative {
     public String getBioguideId() {
         return this.bioguideId;
     }
+    public Long getMostRecentTweetId() {
+        return mostRecentTweetId;
+    }
+    public Tweet getMostRecentTweet() {
+        return mostRecentTweet;
+    }
     public void setMostRecentTweetId(Long id) {
         mostRecentTweetId = id;
+    }
+    public void setMostRecentTweet(Tweet tweet) {
+        mostRecentTweet = tweet;
     }
 
     //Bundling Method
