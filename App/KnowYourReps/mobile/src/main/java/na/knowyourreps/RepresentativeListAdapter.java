@@ -75,10 +75,7 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
         holder.email.setText(rep.getEmail());
         holder.website.setText(rep.getWebsite());
 
-        // TODO: Set the correct Images
-
         holder.image.setImageBitmap(rep.getImage());
-
         holder.image.setTag(position);
         repIdMap.put(position, rep);
 

@@ -92,6 +92,7 @@ public class Representative {
         b.putString("party", party);
         b.putString("bioguideId", bioguideId);
         b.putString("imageQueryUrl", imageQueryUrl);
+
         return b;
     }
 }

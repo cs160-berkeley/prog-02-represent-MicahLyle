@@ -75,7 +75,7 @@ public class DisplayRepresentatives extends AppCompatActivity {
             sunlightAppend = latitude +"&"+ "longitude=" + longitude + "&apikey=" + sunlightApiKey;
             // TODO: Get Zip Codes to work when rendering representatives
         } else if (receivedBundle.getString("source").equals("phone_zipcode")) {
-            String zipcode = receivedBundle.getString("zipcode_from_phone_main");
+            String zipcode = receivedBundle.getString("zip_from_phone_main");
             sunlightStart = sunlightZip;
             sunlightAppend = zipcode + "&apikey=" + sunlightApiKey;
         }
@@ -110,33 +110,31 @@ public class DisplayRepresentatives extends AppCompatActivity {
 
         // TODO: Set this up later using an intent sent to an already running activity
         // http://stackoverflow.com/questions/4042434/convert-arraylist-containing-strings-to-an-array-of-strings-in-java
-        Bundle checkForWatchPress = getIntent().getExtras();
-        if (checkForWatchPress != null && checkForWatchPress.getString("position") != null) {
-            // Start up a specific detailed view that came from pressing 'More Info' on
-            // the selected representative on the watch
-            Intent intent = new Intent(context, DisplayDetailedRepresentative.class);
-            int tagNum = Integer.parseInt(checkForWatchPress.getString("position"));
-            Bundle repBundle = repsToIds.get(tagNum).toBundle();
-            intent.putExtras(repBundle);
-            context.startActivity(intent);
-        }
-        else {
-            // Start up Watch View
-            Intent sendIntent = new Intent(context, PhoneToWatchService.class);
-            String sendOverBlueToothInfoString = "";
-            sendOverBlueToothInfoString += Integer.toString(numRepsInView);
-            sendOverBlueToothInfoString += "__";
-            for (Representative rep:displayedRepList) {
-                sendOverBlueToothInfoString += rep.getName();
-                sendOverBlueToothInfoString += "__";
-                sendOverBlueToothInfoString += rep.getParty();
-                sendOverBlueToothInfoString += "__";
-            }
-            sendIntent.putExtra("MASTER_DATA_STRING", sendOverBlueToothInfoString);
-            sendIntent.putExtra("WATCH_ACTIVITY_SELECTION_STRING", "repView");
-            startService(sendIntent);
-        }
+//        Bundle checkForWatchPress = getIntent().getExtras();
+//        if (checkForWatchPress != null && checkForWatchPress.getString("position") != null) {
+//            // Start up a specific detailed view that came from pressing 'More Info' on
+//            // the selected representative on the watch
+//            Intent intent = new Intent(context, DisplayDetailedRepresentative.class);
+//            int tagNum = Integer.parseInt(checkForWatchPress.getString("position"));
+//            Bundle repBundle = repsToIds.get(tagNum).toBundle();
+//            intent.putExtras(repBundle);
+//            context.startActivity(intent);
+//        }
 
+        // Start up Watch View
+        Intent sendIntent = new Intent(context, PhoneToWatchService.class);
+        String sendOverBlueToothInfoString = "";
+        sendOverBlueToothInfoString += Integer.toString(numRepsInView);
+        sendOverBlueToothInfoString += "__";
+        for (Representative rep:displayedRepList) {
+            sendOverBlueToothInfoString += rep.getName();
+            sendOverBlueToothInfoString += "__";
+            sendOverBlueToothInfoString += rep.getParty();
+            sendOverBlueToothInfoString += "__";
+        }
+        sendIntent.putExtra("MASTER_DATA_STRING", sendOverBlueToothInfoString);
+        sendIntent.putExtra("WATCH_ACTIVITY_SELECTION_STRING", "repView");
+        startService(sendIntent);
     }
 
     private void setupTweets() {

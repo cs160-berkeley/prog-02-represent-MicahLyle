@@ -150,7 +150,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         } else if (zipSelectButton.isChecked()) {
             if (zipCodeField.getText().length() >= 5) {
                 Intent intent = new Intent(this, DisplayRepresentatives.class);
-                intent.putExtra("zip_from_phone_main", zipCodeField.getText());
+                String zipcode = String.valueOf(zipCodeField.getText());
+                intent.putExtra("zip_from_phone_main", zipcode);
                 intent.putExtra("source", "phone_zipcode");
                 startActivity(intent);
             } else {

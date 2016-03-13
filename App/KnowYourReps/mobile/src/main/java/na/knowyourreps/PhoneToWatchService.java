@@ -47,22 +47,27 @@ public class PhoneToWatchService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Which view do we want to display on the watch? Grab this info from INTENT
         // which was passed over when we called startService
-        Bundle extras = intent.getExtras();
-        final String masterRepresentativesInfoString = extras.getString("MASTER_DATA_STRING");
-        final String selectWatchActivity = extras.getString("WATCH_ACTIVITY_SELECTION_STRING");
+        if (intent != null) {
+            Bundle extras = intent.getExtras();
+            final String masterRepresentativesInfoString = extras.getString("MASTER_DATA_STRING");
+            final String selectWatchActivity = extras.getString("WATCH_ACTIVITY_SELECTION_STRING");
 
-        // Send the message with the information for the respective view
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //first, connect to the apiclient
-                mApiClient.connect();
-                //now that you're connected, send a massage with the cat name
-                sendMessage("/" + selectWatchActivity, masterRepresentativesInfoString);
-            }
-        }).start();
+            // Send the message with the information for the respective view
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //first, connect to the apiclient
+                    mApiClient.connect();
+                    //now that you're connected, send a massage with the cat name
+                    sendMessage("/" + selectWatchActivity, masterRepresentativesInfoString);
+                }
+            }).start();
 
-        return START_STICKY;
+            return START_STICKY;
+
+        } else {
+            return START_NOT_STICKY;
+        }
     }
 
     @Override //remember, all services need to implement an IBiner
