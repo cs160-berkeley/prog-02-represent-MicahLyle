@@ -290,3 +290,5 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 //TODO: Use Randomly Generated County Name from Watch to get Representatives on Phone
 //TODO: Make sure everything is running smoothly and it's doing everything it's supposed to
 //TODO: Change the Location of the Watch Shaker
+//TODO: If time, read that stack overflow post and try clearing all watch activities when stuff is sent over from representatives list view
+//TODO: Make a button on the vote view that starts up the representative view

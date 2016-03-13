@@ -60,7 +60,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
             infoForPhone = extras.getString("watch_to_phone_detailed");
             whatIsBeingSent = "watch_to_phone_detailed";
         } else if (extras.get("shake_selection") != null) {
-            infoForPhone = extras.getString("shake_selection");
+            infoForPhone = extras.getString("randomlyGeneratedCounty");
             whatIsBeingSent = "shake_selection";
         }
 

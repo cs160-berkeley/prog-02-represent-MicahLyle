@@ -45,6 +45,7 @@ public class VoteViewActivity extends Activity {
             // Send County to Phone
             Intent intent = new Intent(this, WatchToPhoneService.class);
             intent.putExtra("randomlyGeneratedCounty", county);
+            intent.putExtra("shake_selection", "true");
             startService(intent);
         }
 

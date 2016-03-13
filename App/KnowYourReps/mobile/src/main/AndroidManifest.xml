@@ -19,8 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayRepresentatives"
-            android:launchMode="singleTop"/>
+        <activity android:name=".DisplayRepresentatives" />
         <activity android:name=".DisplayDetailedRepresentative" />
 
         <service android:name=".PhoneToWatchService" />

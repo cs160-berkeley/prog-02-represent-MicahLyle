@@ -57,19 +57,11 @@ public class DisplayRepresentatives extends AppCompatActivity {
     private String sunlightPrecise = "https://congress.api.sunlightfoundation.com/legislators/locate?latitude=";
     private String sunlightZip = "https://congress.api.sunlightfoundation.com/legislators/locate?zip=";
     private String sunlightApiKey = "2895ee1a05b74c64bb0bead86028d3ea";
+    private String geocodingApiUrlStart = "https://maps.googleapis.com/maps/api/geocode/json?";
+    private String geocodingApiKey = "AIzaSyAUhOJD5_-pg9FYAq9bWuShwy7CBMsNgPY";
     private String sunlightStart;
     private String sunlightAppend;
     private static final int MAX_COUNTDOWN_TIMER_ITERATIONS = 100;
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        Bundle extras = intent.getExtras();
-        int position = Integer.parseInt(extras.getString("position"));
-        Intent detailedIntent = new Intent(context, DisplayDetailedRepresentative.class);
-        Bundle repBundle = repsToIds.get(position).toBundle();
-        detailedIntent.putExtras(repBundle);
-        context.startActivity(detailedIntent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,18 +70,23 @@ public class DisplayRepresentatives extends AppCompatActivity {
         context = this;
 
         Bundle receivedBundle = getIntent().getExtras();
-        if (receivedBundle.getString("source").equals("phone_location")) {
-            String latitude = receivedBundle.getString("latitude_from_phone_main");
-            String longitude = receivedBundle.getString("longitude_from_phone_main");
-            sunlightStart = sunlightPrecise;
-            sunlightAppend = latitude +"&"+ "longitude=" + longitude + "&apikey=" + sunlightApiKey;
-        } else if (receivedBundle.getString("source").equals("phone_zipcode")) {
-            String zipcode = receivedBundle.getString("zip_from_phone_main");
-            sunlightStart = sunlightZip;
-            sunlightAppend = zipcode + "&apikey=" + sunlightApiKey;
-        }
+        if (receivedBundle.getString("county_from_watch") != null) {
+            String county = receivedBundle.getString("county_from_watch");
+            new displayRepsFromCounty().execute(county);
+        } else {
+            if (receivedBundle.getString("source").equals("phone_location")) {
+                String latitude = receivedBundle.getString("latitude_from_phone_main");
+                String longitude = receivedBundle.getString("longitude_from_phone_main");
+                sunlightStart = sunlightPrecise;
+                sunlightAppend = latitude +"&"+ "longitude=" + longitude + "&apikey=" + sunlightApiKey;
+            } else if (receivedBundle.getString("source").equals("phone_zipcode")) {
+                String zipcode = receivedBundle.getString("zip_from_phone_main");
+                sunlightStart = sunlightZip;
+                sunlightAppend = zipcode + "&apikey=" + sunlightApiKey;
+            }
 
-        new RetrieveRepresentativeInfo().execute();
+            new RetrieveRepresentativeInfo().execute();
+        }
     }
 
     public void onRepresentativeInfoReceived() {
@@ -384,6 +381,77 @@ public class DisplayRepresentatives extends AppCompatActivity {
             if (repIdsToPhotos.size() == numRepsInView && repIdsToTweetIds.size() ==
                     numRepsInView) {
                 retrievalServicesFinished();
+            }
+        }
+    }
+
+    private class displayRepsFromCounty extends AsyncTask<String, Void, String> {
+
+        private String nextAction;
+
+        protected void onPreExecute() {
+            final ProgressBar repLoad = (ProgressBar) findViewById(R.id.repLoadingProgressBar);
+            final TextView repLoadText = (TextView) findViewById(R.id.repLoadingText);
+            repLoadText.setText(getString(R.string.representatives_loading_text));
+            repLoad.setVisibility(View.VISIBLE);
+            repLoadText.setVisibility(View.VISIBLE);
+        }
+
+        protected String doInBackground(String... county) {
+            try {
+                URL url;
+                String countyName = county[0];
+                String[] countyComponents = countyName.split(", ");
+                String stateName = countyComponents[1];
+                String[] countyComponentsSplit = countyComponents[0].split(" ");
+                String countyQueryString = "";
+                int countyComponentsLength = countyComponentsSplit.length;
+                for (int i = 0; i < countyComponentsLength; i++) {
+                    countyQueryString += countyComponentsSplit[i];
+                    if (i != (countyComponentsLength-1)) {
+                        countyQueryString += "+";
+                    }
+                }
+                url = new URL(geocodingApiUrlStart + "address=" + countyQueryString +
+                        "&components=administrative_area:" + stateName + "&country=USA" +
+                        "&key=" + geocodingApiKey);
+                //Example Query Below
+                //https://maps.googleapis.com/maps/api/geocode/json?address=Alameda+County&components=
+                //administrative_area:CA&country:US&key=AIzaSyAUhOJD5_-pg9FYAq9bWuShwy7CBMsNgPY
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                try {
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                            urlConnection.getInputStream()));
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(line).append("\n");
+                    }
+                    bufferedReader.close();
+                    return stringBuilder.toString();
+                } finally {
+                    urlConnection.disconnect();
+                }
+
+            } catch (Exception e) {
+                Log.e("Unable to get County", e.getMessage(), e);
+                return null;
+            }
+        }
+
+        protected void onPostExecute(String response) {
+            if (response == null) {
+                response = getString(R.string.loc_error_message_1);
+            } else {
+                try {
+                    JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
+                    JSONArray resultsArray = (JSONArray) object.get("results");
+                    JSONObject resultComponent;
+                    for (int i = 0; i < resultsArray.length(); i++)
+                        resultComponent = (JSONObject) resultsArray.get(i);
+                } catch (JSONException e) {
+                    response = "";  // Just give an empty response since location still worked
+                }
             }
         }
     }
