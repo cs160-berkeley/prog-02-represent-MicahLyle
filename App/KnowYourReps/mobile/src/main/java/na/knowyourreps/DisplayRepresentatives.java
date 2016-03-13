@@ -83,7 +83,6 @@ public class DisplayRepresentatives extends AppCompatActivity {
             String longitude = receivedBundle.getString("longitude_from_phone_main");
             sunlightStart = sunlightPrecise;
             sunlightAppend = latitude +"&"+ "longitude=" + longitude + "&apikey=" + sunlightApiKey;
-            // TODO: Get Zip Codes to work when rendering representatives
         } else if (receivedBundle.getString("source").equals("phone_zipcode")) {
             String zipcode = receivedBundle.getString("zip_from_phone_main");
             sunlightStart = sunlightZip;

@@ -280,3 +280,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }
     }
 }
+
+//TODO: Parse JSON County Names on Watch
+//TODO: Randomly Select JSON County Names on Watch
+//TODO: Use Randomly Generated County Name from Watch to get Representatives on Phone
+//TODO: Make sure everything is running smoothly and it's doing everything it's supposed to
