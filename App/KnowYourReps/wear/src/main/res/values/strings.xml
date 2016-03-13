@@ -8,7 +8,7 @@
     <string name="status_message">Awaiting Phone Input</string>
     <string name="title_activity_vote_view">voteViewActivity</string>
     <string name="vote_view_title">2012 Vote View</string>
-    <string name="county_name">Selected County</string>
+    <string name="county_name">Unable to Retrieve County from Zip Code</string>
     <string name="romney">Romney</string>
     <string name="obama">Obama</string>
     <string name="romney_percent">48%</string>

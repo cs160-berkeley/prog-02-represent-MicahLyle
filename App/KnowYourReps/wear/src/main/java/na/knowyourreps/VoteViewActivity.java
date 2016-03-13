@@ -2,42 +2,30 @@ package na.knowyourreps;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class VoteViewActivity extends Activity {
-
-    private int[] zipCodes = {94704, 92010, 58103, 78729, 63126};
-    private String[][] correspondingCounties = {{"Alameda"}, {"San Diego"}, {"Cass"}, {"Travis",
-    "Williamson", "Hays"}, {"St. Louis"}};
-    private HashMap<String, Integer[]> countyVotePercent;
-    private String otherCountyName = "Unknown";
-    private Integer[] alaVoteP = {18, 79};
-    private Integer[] sDVoteP = {46, 52};
-    private Integer[] cassVoteP = {63, 35};
-    private Integer[] travisVoteP = {36, 60};
-    private Integer[] willVoteP = {59, 38};
-    private Integer[] haysVoteP = {54, 43};
-    private Integer[] stLouisVoteP = {43, 56};
-    private Integer[][] votePs= {alaVoteP, sDVoteP, cassVoteP, travisVoteP, willVoteP, haysVoteP,
-        stLouisVoteP};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote_view);
-
-        countyVotePercent = new HashMap<>();
-        int i = 0;
-        for (String[] counties : correspondingCounties) {
-            for (String county : counties) {
-                countyVotePercent.put(county, votePs[i]);
-            }
-            i += 1;
-        }
 
         TextView countyName = (TextView) findViewById(R.id.countyName);
         TextView romneyPercent = (TextView) findViewById(R.id.romneyPercent);
@@ -45,44 +33,92 @@ public class VoteViewActivity extends Activity {
 
         Bundle receivedBundle = getIntent().getExtras();
 
-        if (receivedBundle.getString("zip") != null) {
-            int zipCode = Integer.parseInt(receivedBundle.getString("zip"));
-            int j = 0;
-            String selectedCounty = otherCountyName;
-            boolean foundMatch = false;
-            for (int n : zipCodes) {
-                if (n == zipCode) {
-                    foundMatch = true;
-                    selectedCounty = correspondingCounties[j][new Random().nextInt(
-                            correspondingCounties[j].length)];
-                }
-                j += 1;
-            }
-            countyName.setText(selectedCounty + " County");
-            if (foundMatch) {
-                romneyPercent.setText(Integer.toString(countyVotePercent.get(selectedCounty)[0])
-                + "%");
-                obamaPercent.setText(Integer.toString(countyVotePercent.get(selectedCounty)[1])
-                + "%");
-            } else {
-                int randomRomneyVoteP = new Random().nextInt(95);
-                int randomObamaVoteP = new Random().nextInt(100 - randomRomneyVoteP);
-                romneyPercent.setText(Integer.toString(randomRomneyVoteP) + "%");
-                obamaPercent.setText(Integer.toString(randomObamaVoteP) + "%");
-            }
-        } else {
-            int zipSelectionNum = new Random().nextInt(5);
-            int countySelectionNum = new Random().nextInt(correspondingCounties[zipSelectionNum]
-                .length);
-            String selectedCounty = correspondingCounties[zipSelectionNum][countySelectionNum];
-            countyName.setText(selectedCounty + " County");
-            romneyPercent.setText(Integer.toString(countyVotePercent.get(selectedCounty)[0]) + "%");
-            obamaPercent.setText(Integer.toString(countyVotePercent.get(selectedCounty)[1]) + "%");
+        String countyVoteInfo = "";     // For JSON parsing later
+        String county = "";             // County Name (grabbed later)
+        double romneyVote = 0;        // Romney Vote (grabbed later)
+        double obamaVote = 0;        // Obama Vote (grabbed later)
 
-            // Send Zip Code to Phone
+        if (receivedBundle.getString("randomCounty") != null) {
+
+            county = selectRandomCounty();
+
+            // Send County to Phone
             Intent intent = new Intent(this, WatchToPhoneService.class);
-            intent.putExtra("randomGeneratedZipCode", Integer.toString(zipSelectionNum));
+            intent.putExtra("randomlyGeneratedCounty", county);
             startService(intent);
         }
+
+        if (receivedBundle.getString("county") != null) {
+            if (!(receivedBundle.getString("county").equals("RANDOM_GENERATION"))) {
+                county = receivedBundle.getString("county");
+                countyName.setText(String.valueOf(county));
+            }
+            countyName.setText(String.valueOf(county));
+            String[] countyCheck = county.split(",");
+            if (countyCheck[0].equals("null")) {
+                countyName.setText(String.valueOf(county));
+                romneyPercent.setVisibility(View.INVISIBLE);
+                obamaPercent.setVisibility(View.INVISIBLE);
+            } else {
+                countyName.setText(String.valueOf(county));
+
+                // Open the JSON Vote View File
+                try {
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                            getResources().openRawResource(R.raw.newelectioncounty2012)));
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(line).append("\n");
+                    }
+                    bufferedReader.close();
+                    countyVoteInfo = stringBuilder.toString();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                // Parse the JSON Vote View File
+                try {
+                    JSONObject voteViewData = (JSONObject) new JSONTokener(countyVoteInfo).nextValue();
+                    JSONObject countyVote = (JSONObject) voteViewData.get(county);
+                    romneyVote = (Double) countyVote.get("romney");
+                    obamaVote = (Double) countyVote.get("obama");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                // Set Visibility
+                romneyPercent.setVisibility(View.VISIBLE);
+                obamaPercent.setVisibility(View.VISIBLE);
+
+                // Display the Votes
+                romneyPercent.setText(Double.toString(romneyVote));
+                obamaPercent.setText(Double.toString(obamaVote));
+            }
+        }
+    }
+
+    protected String selectRandomCounty() {
+        // Open the List of Counties Text View
+        int numCounties = 0;
+        HashMap<Integer, String> countiesMap = new HashMap<>();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                    getResources().openRawResource(R.raw.list_of_counties)));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                countiesMap.put(numCounties, line);
+                numCounties += 1;
+            }
+            bufferedReader.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int randomLocationNum = ThreadLocalRandom.current().nextInt(0, numCounties);
+        String randomCounty = countiesMap.get(randomLocationNum);
+        return randomCounty;
     }
 }

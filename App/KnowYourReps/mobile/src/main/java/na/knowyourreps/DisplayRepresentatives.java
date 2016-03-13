@@ -134,6 +134,7 @@ public class DisplayRepresentatives extends AppCompatActivity {
             sendOverBlueToothInfoString += rep.getBioguideId();
             sendOverBlueToothInfoString += "__";
             sendOverBlueToothInfoString += rep.getImageQueryUrl();
+            sendOverBlueToothInfoString += "__";
         }
         sendIntent.putExtra("MASTER_DATA_STRING", sendOverBlueToothInfoString);
         sendIntent.putExtra("WATCH_ACTIVITY_SELECTION_STRING", "repView");
@@ -277,7 +278,12 @@ public class DisplayRepresentatives extends AppCompatActivity {
                     // Initialize the representatives from the JSON Object
                     for (int i = 0; i < numRepsInView; i++) {
                         currentRep = (JSONObject) resultsArray.get(i);
-                        currentRepTwitterId = (String) currentRep.get("twitter_id");
+                        try {
+                            currentRepTwitterId = (String) currentRep.get("twitter_id");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            currentRepTwitterId = "";
+                        }
                         currentRepParty = (String) currentRep.get("party");
                         currentRepName = currentRep.get("first_name")+" "+currentRep.get("last_name");
                         currentRepEmail = (String) currentRep.get("oc_email");

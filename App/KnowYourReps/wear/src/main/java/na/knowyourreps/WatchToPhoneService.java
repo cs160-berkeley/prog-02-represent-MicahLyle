@@ -24,6 +24,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     private GoogleApiClient mWatchApiClient;
     private List<Node> nodes = new ArrayList<>();
     private String infoForPhone;
+    private String whatIsBeingSent;
     final Service _this = this; // Thanks to https://piazza.com/class/ijddlu9pcyk1sk?cid=422
 
     @Override
@@ -57,8 +58,10 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
         Bundle extras = intent.getExtras();
         if (extras.getString("watch_to_phone_detailed") != null) {
             infoForPhone = extras.getString("watch_to_phone_detailed");
+            whatIsBeingSent = "watch_to_phone_detailed";
         } else if (extras.get("shake_selection") != null) {
             infoForPhone = extras.getString("shake_selection");
+            whatIsBeingSent = "shake_selection";
         }
 
         return START_STICKY;
@@ -76,12 +79,12 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                         Log.d("T", "found nodes");
                         // when we find a connected node, we populate the list declared above
                         // finally, we can send a message
-                        if (infoForPhone.length() == 5) {
-                            sendMessage("/send_random_zip", infoForPhone);
-                        } else {
+                        if (whatIsBeingSent.equals("shake_selection")) {
+                            sendMessage("/send_random_county", infoForPhone);
+                        } else if (whatIsBeingSent.equals("watch_to_phone_detailed")) {
                             sendMessage("/send_rep_position", infoForPhone);
                         }
-                        Log.d("T", "sent");
+                        Log.d("T", whatIsBeingSent + "sent");
                         _this.stopSelf();
                     }
                 });

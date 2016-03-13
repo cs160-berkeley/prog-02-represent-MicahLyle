@@ -16,7 +16,7 @@ public class PhoneListenerService extends WearableListenerService {
 
     //   WearableListenerServices don't need an iBinder or an onStartCommand: they just need an onMessageReceieved.
     private static final String REP_POSITION_PATH = "/send_rep_position";
-    private static final String RANDOM_ZIP_PATH = "/send_random_zip";
+    private static final String RANDOM_ZIP_PATH = "/send_random_county";
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {

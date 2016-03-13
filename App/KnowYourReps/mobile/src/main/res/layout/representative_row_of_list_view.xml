@@ -72,6 +72,17 @@
         android:textSize="16sp"
         android:paddingTop="2sp"/>
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/repNoTwitterText"
+        android:layout_below="@+id/repWebsite"
+        android:layout_toEndOf="@+id/repImage"
+        android:text="@string/no_twitter_id_text"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:paddingTop="2sp"/>
+
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

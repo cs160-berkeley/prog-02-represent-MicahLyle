@@ -174,13 +174,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void startWatchVoteView(View view) {
         // Start up Watch View
         if (radioButtonSelection == SELECT_CURRENT_LOCATION) {
-            new RetrieveCountyTask().execute("location", "vote_view");
+            new RetrieveCountyTask().execute("location", "voteView");
         } else if (radioButtonSelection == SELECT_ZIP_CODE){
             TextView zipCodeField = (TextView) findViewById(R.id.enterZipCode);
             if (zipCodeField.getText().length() >= 5) {
                 Intent intent = new Intent(this, DisplayRepresentatives.class);
                 String zipcode = String.valueOf(zipCodeField.getText());
-                new RetrieveCountyTask().execute("zipcode", "vote_view", zipcode);
+                new RetrieveCountyTask().execute("zipcode", "voteView", zipcode);
             }
         }
     }
@@ -189,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         Intent sendIntent = new Intent(this, PhoneToWatchService.class);
         sendIntent.putExtra("MASTER_DATA_STRING", countyName);
         sendIntent.putExtra("WATCH_ACTIVITY_SELECTION_STRING", "voteView");
+        startService(sendIntent);
     }
 
     private class RetrieveCountyTask extends AsyncTask<String, Void, String> {
@@ -212,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                         url = new URL(geocodingApiUrlStart + "latlng=" + mLatitudeText + "," +
                                 mLongitudeText + "&key=" + geocodingApiKey);
                     } else {
-                        url = new URL(geocodingApiUrlStart + "address=" + zipOrLoc[0] + "&region=" +
+                        url = new URL(geocodingApiUrlStart + "address=" + zipOrLoc[2] + "&region=" +
                                 "us&key=" + geocodingApiKey);
                     }
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -249,23 +250,26 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     JSONObject addressComponents = (JSONObject) resultsArray.get(0);
                     JSONArray componentsArray = (JSONArray) addressComponents.get("address_components");
                     String typeString;
-                    String responseString = null;
+                    String stateString = null;
+                    String countyString = null;
                     for (int i = 0; i < componentsArray.length(); i++) {
                         JSONObject countyComponents = (JSONObject) componentsArray.get(i);
                         JSONArray typesArray = (JSONArray) countyComponents.get("types");
                         for (int j = 0;j < typesArray.length(); j++) {
                             typeString = (String) typesArray.get(j);
                             if (typeString.equals("administrative_area_level_2")) {
-                                responseString = (String) countyComponents.get("long_name");
-                                break;
+                                countyString = (String) countyComponents.get("long_name");
+                            }
+                            if (typeString.equals("administrative_area_level_1")) {
+                                stateString = (String) countyComponents.get("short_name");
                             }
                         }
-                        if (responseString != null) {
+                        if (countyString != null && stateString != null) {
                             break;
                         }
                     }
-                    countyName = responseString;
-                    response = responseString;
+                    countyName = countyString + ", " + stateString;
+                    response = countyName;
                 } catch (JSONException e) {
                     response = "";  // Just give an empty response since location still worked
                 }
@@ -274,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             final TextView locInfoField = (TextView) findViewById(R.id.locationInfoText);
             locLoad.setVisibility(View.GONE);
             locInfoField.setText(response);
-            if (nextAction.equals("vote_view")) {
+            if (nextAction.equals("voteView")) {
                 sendCountyToWatch();
             }
         }
@@ -285,3 +289,4 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 //TODO: Randomly Select JSON County Names on Watch
 //TODO: Use Randomly Generated County Name from Watch to get Representatives on Phone
 //TODO: Make sure everything is running smoothly and it's doing everything it's supposed to
+//TODO: Change the Location of the Watch Shaker

@@ -24,6 +24,7 @@
     <string name="independent_party_label">I</string>
     <string name="republican_party_label">R</string>
     <string name="other_party_label">O</string>
+    <string name="no_twitter_id_text">Unable to find Twitter Id.</string>
     <string name="title_activity_display_detailed_representative">DisplayDetailedRepresentative
     </string>
     <string name="google_app_id">794187533944</string>

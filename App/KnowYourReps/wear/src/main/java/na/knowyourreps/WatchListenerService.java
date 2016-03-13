@@ -37,7 +37,7 @@ public class WatchListenerService extends WearableListenerService {
             Intent intent = new Intent(this, VoteViewActivity.class );
             intent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
             //you need to add this flag since you're starting a new activity from a service
-            intent.putExtra("zip", voteViewInfo);
+            intent.putExtra("county", voteViewInfo);
             Log.d("T", "about to start watch VoteViewActivity");
             startActivity(intent);
         } else {

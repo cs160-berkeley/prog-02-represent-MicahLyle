@@ -36,21 +36,25 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_screen_slide_pager);
-        String testString = getIntent().getExtras().getString("REP_INFORMATION");
-        // Instantiate a ViewPager and a PagerAdapter
-        mPager = (ViewPager) findViewById(R.id.viewpager_reps);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mPager.setAdapter(mPagerAdapter);
 
         // Set up Hashes
         nameHash = new HashMap<>();
         partyHash = new HashMap<>();
+        queryIdHash = new HashMap<>();
+        endOfTermHash = new HashMap<>();
+        seatHash = new HashMap<>();
+        bioGuideIdHash = new HashMap<>();
 
         // Grab representatives information that was sent over from the phone
         String repsInfo = getIntent().getExtras().getString("REP_INFORMATION");
         repsStringParser(repsInfo);
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_screen_slide_pager);
+        // Instantiate a ViewPager and a PagerAdapter
+        mPager = (ViewPager) findViewById(R.id.viewpager_reps);
+        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        mPager.setAdapter(mPagerAdapter);
     }
 
     private void repsStringParser(String s) {

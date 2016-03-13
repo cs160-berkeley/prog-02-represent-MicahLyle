@@ -37,7 +37,8 @@ public class MainActivity extends Activity {
             public void onShake() {
                 Intent intent = new Intent(getBaseContext(), VoteViewActivity.class );
                 //you need to add this flag since you're starting a new activity from a service
-                intent.putExtra("shake_selection", "dummy_string");
+                intent.putExtra("randomCounty", "true");
+                intent.putExtra("county", "RANDOM_GENERATION");
                 Log.d("T", "about to start watch VoteViewActivity because a shaking has occured :D");
                 Toast.makeText(MainActivity.this, "Shake!", Toast.LENGTH_SHORT).show();
                 startActivity(intent);

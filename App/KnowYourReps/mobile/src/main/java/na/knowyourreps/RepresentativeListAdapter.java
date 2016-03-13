@@ -1,5 +1,6 @@
 package na.knowyourreps;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -62,6 +63,7 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
             holder.seat = (TextView) convertView.findViewById(R.id.repSeat);
             holder.party = (TextView) convertView.findViewById(R.id.repParty);
             holder.image = (ImageView) convertView.findViewById(R.id.repImage);
+            holder.noTweetId = (TextView) convertView.findViewById(R.id.repNoTwitterText);
             holder.tweetFrame = (FrameLayout) convertView.findViewById(R.id.tweetFrame);
 
             // Store the View Holder within the view
@@ -105,7 +107,12 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
         holder.party.setText(partyText);
 
         // Add the Compact Tweet View for the Representative
-        holder.tweetFrame.addView(new CompactTweetView(context, rep.getMostRecentTweet()));
+        if (rep.getTwitterId().equals("")) {
+            holder.noTweetId.setVisibility(View.VISIBLE);
+        }
+        else {
+            holder.tweetFrame.addView(new CompactTweetView(context, rep.getMostRecentTweet()));
+        }
 
         return convertView;
     }
@@ -116,6 +123,7 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
         TextView website;
         TextView seat;
         TextView party;
+        TextView noTweetId;
         ImageView image;
         FrameLayout tweetFrame;
     }
