@@ -41,14 +41,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e39095b-2a10-4de6-8aea-35dcb236d0b9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/DisplayDetailedRepresentative.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/DisplayDetailedRepresentative.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/DisplayRepresentatives.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/DisplayRepresentatives.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/MainActivity.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/na/knowyourreps/MainActivity.java" afterPath="$PROJECT_DIR$/wear/src/main/java/na/knowyourreps/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/PhoneListenerService.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/na/knowyourreps/PhoneListenerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/na/knowyourreps/ScreenSlidePagerActivity.java" afterPath="$PROJECT_DIR$/wear/src/main/java/na/knowyourreps/ScreenSlidePagerActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/na/knowyourreps/WatchToPhoneService.java" afterPath="$PROJECT_DIR$/wear/src/main/java/na/knowyourreps/WatchToPhoneService.java" />
+      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\Apk\wear-debug-unaligned.apk" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Micah\Gdrive\bears\160\work\prog-02\Prog2B_and_2C\Apk\wear-debug.apk" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Apk/mobile-debug-unaligned.apk" afterPath="$PROJECT_DIR$/../../Apk/mobile-debug-unaligned.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Apk/mobile-debug.apk" afterPath="$PROJECT_DIR$/../../Apk/mobile-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="KnowYourReps.iws" />
@@ -3059,7 +3055,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Application.mobile">
+  <component name="RunManager" selected="Android Application.wear">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="DEPLOY" value="true" />
