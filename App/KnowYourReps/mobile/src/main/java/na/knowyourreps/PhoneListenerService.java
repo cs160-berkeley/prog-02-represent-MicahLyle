@@ -26,7 +26,9 @@ public class PhoneListenerService extends WearableListenerService {
             // Value contains the String we sent over in WatchToPhoneService
             String repPosition = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Intent detailedViewIntent = new Intent(this, DisplayRepresentatives.class);
-            detailedViewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            // Thanks to http://stackoverflow.com/questions/18672482/how-to-pass-intent-with-extras-to-an-already-running-activity
+            detailedViewIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             detailedViewIntent.putExtra("position", repPosition);
             startActivity(detailedViewIntent);
 

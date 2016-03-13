@@ -62,6 +62,16 @@ public class DisplayRepresentatives extends AppCompatActivity {
     private static final int MAX_COUNTDOWN_TIMER_ITERATIONS = 100;
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        Bundle extras = intent.getExtras();
+        int position = Integer.parseInt(extras.getString("position"));
+        Intent detailedIntent = new Intent(context, DisplayDetailedRepresentative.class);
+        Bundle repBundle = repsToIds.get(position).toBundle();
+        detailedIntent.putExtras(repBundle);
+        context.startActivity(detailedIntent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_representatives);
@@ -107,19 +117,6 @@ public class DisplayRepresentatives extends AppCompatActivity {
         listViewRepresentatives.setVisibility(View.VISIBLE);
         listViewRepresentatives.setAdapter(new RepresentativeListAdapter(context,
                 R.layout.representative_row_of_list_view, displayedRepList));
-
-        // TODO: Set this up later using an intent sent to an already running activity
-        // http://stackoverflow.com/questions/4042434/convert-arraylist-containing-strings-to-an-array-of-strings-in-java
-//        Bundle checkForWatchPress = getIntent().getExtras();
-//        if (checkForWatchPress != null && checkForWatchPress.getString("position") != null) {
-//            // Start up a specific detailed view that came from pressing 'More Info' on
-//            // the selected representative on the watch
-//            Intent intent = new Intent(context, DisplayDetailedRepresentative.class);
-//            int tagNum = Integer.parseInt(checkForWatchPress.getString("position"));
-//            Bundle repBundle = repsToIds.get(tagNum).toBundle();
-//            intent.putExtras(repBundle);
-//            context.startActivity(intent);
-//        }
 
         // Start up Watch View
         Intent sendIntent = new Intent(context, PhoneToWatchService.class);
