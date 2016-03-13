@@ -237,9 +237,23 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     JSONArray resultsArray = (JSONArray) object.get("results");
                     JSONObject addressComponents = (JSONObject) resultsArray.get(0);
                     JSONArray componentsArray = (JSONArray) addressComponents.get("address_components");
-                    JSONObject countyComponents = (JSONObject) componentsArray.get(4);
-                    //String countyName = addressComponentsArray.getString("long_name");
-                    response = (String) countyComponents.get("long_name");
+                    String typeString;
+                    String responseString = null;
+                    for (int i = 0; i < componentsArray.length(); i++) {
+                        JSONObject countyComponents = (JSONObject) componentsArray.get(i);
+                        JSONArray typesArray = (JSONArray) countyComponents.get("types");
+                        for (int j = 0;j < typesArray.length(); j++) {
+                            typeString = (String) typesArray.get(j);
+                            if (typeString.equals("administrative_area_level_2")) {
+                                responseString = (String) countyComponents.get("long_name");
+                                break;
+                            }
+                        }
+                        if (responseString != null) {
+                            break;
+                        }
+                    }
+                    response = responseString;
                 } catch (JSONException e) {
                     response = "";  // Just give an empty response since location still worked
                 }
