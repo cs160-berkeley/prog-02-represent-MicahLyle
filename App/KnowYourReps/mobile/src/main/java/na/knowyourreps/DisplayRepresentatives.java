@@ -2,6 +2,8 @@ package na.knowyourreps;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +29,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -50,6 +53,7 @@ public class DisplayRepresentatives extends AppCompatActivity {
     private HashMap<Integer, Representative> repsToIds;
     private HashMap<Integer, Long> repIdsToTweetIds;
     private HashMap<Integer, Tweet> repsToTweets;
+    private HashMap<Integer, Bitmap> repIdsToPhotos;
     private String sunlightPrecise = "https://congress.api.sunlightfoundation.com/legislators/locate?latitude=";
     private String sunlightZip = "https://congress.api.sunlightfoundation.com/legislators/locate?zip=";
     private String sunlightApiKey = "2895ee1a05b74c64bb0bead86028d3ea";
@@ -91,6 +95,7 @@ public class DisplayRepresentatives extends AppCompatActivity {
             if (repIdsToTweetIds.get(i) != -1L) {
                 rep.setMostRecentTweet(repsToTweets.get(i));    // Add tweet if present
             }
+            rep.setImage(repIdsToPhotos.get(i));
             displayedRepList.add(rep);
             i += 1;
         }
@@ -169,8 +174,9 @@ public class DisplayRepresentatives extends AppCompatActivity {
                             Log.d("fabricstuff", "result: " + tweet.text + "  " + tweet.createdAt);
                             repIdsToTweetIds.put(repPosition, tweet.getId());
                             repsToTweets.put(repPosition, tweet);
-                            if (repIdsToTweetIds.size() == numRepsInView) {
-                                tweetServicesFinished();
+                            if (repIdsToTweetIds.size() == numRepsInView && repIdsToPhotos.size()
+                                    == numRepsInView) {
+                                retrievalServicesFinished();
                             }
                         }
                     }
@@ -180,15 +186,16 @@ public class DisplayRepresentatives extends AppCompatActivity {
                         e.printStackTrace();
                         // Put -1L when there the tweet is unable to be accessed
                         repIdsToTweetIds.put(repPosition, -1L);
-                        if (repIdsToTweetIds.size() == numRepsInView) {
-                            tweetServicesFinished();
+                        if (repIdsToTweetIds.size() == numRepsInView && repIdsToPhotos.size()
+                                == numRepsInView) {
+                            retrievalServicesFinished();
                         }
                     }
                 });
 
     }
 
-    private void tweetServicesFinished() {
+    private void retrievalServicesFinished() {
         final ProgressBar repLoad = (ProgressBar) findViewById(R.id.repLoadingProgressBar);
         final TextView repLoadText = (TextView) findViewById(R.id.repLoadingText);
         final TextView repTitle = (TextView) findViewById(R.id.repViewTitle);
@@ -263,7 +270,7 @@ public class DisplayRepresentatives extends AppCompatActivity {
                     String currentRepWebsite = "";
                     String currentRepGovernmentSeat = "";
                     String currentRepEndOfTerm = "";
-                    String currentRepImage = "";
+                    String currentRepImageQuery = "";
                     String currentRepBioguideId = "";
 
                     // Initialize the representatives from the JSON Object
@@ -271,17 +278,20 @@ public class DisplayRepresentatives extends AppCompatActivity {
                         currentRep = (JSONObject) resultsArray.get(i);
                         currentRepTwitterId = (String) currentRep.get("twitter_id");
                         currentRepParty = (String) currentRep.get("party");
-                        currentRepName = (String) currentRep.get("first_name") + " " +
-                                                (String) currentRep.get("last_name");
+                        currentRepName = currentRep.get("first_name")+" "+currentRep.get("last_name");
                         currentRepEmail = (String) currentRep.get("oc_email");
                         currentRepWebsite = (String) currentRep.get("website");
                         currentRepGovernmentSeat = (String) currentRep.get("chamber");
-                        currentRepEndOfTerm = "End of Term: " + (String) currentRep.get("term_end");
+                        currentRepEndOfTerm = "End of Term: " + currentRep.get("term_end");
                         currentRepBioguideId = (String) currentRep.get("bioguide_id");
+
+                        String imageQuery = "https://theunitedstates.io/images/congress/";
+                        String size = "450x550";
+                        imageQuery = imageQuery + size + "/" + currentRepBioguideId + ".jpg";
 
                         repList.add(new Representative(currentRepName, currentRepEmail,
                                 currentRepWebsite, currentRepGovernmentSeat, currentRepParty,
-                                currentRepEndOfTerm, currentRepTwitterId, currentRepImage,
+                                currentRepEndOfTerm, currentRepTwitterId, imageQuery,
                                 currentRepBioguideId));
                     }
 
@@ -317,8 +327,56 @@ public class DisplayRepresentatives extends AppCompatActivity {
                 repLoadText.setText(getString(R.string.repview_error_message_1));
             }
 
-            if (repIdsToTweetIds.size() == 2) {
+            // Initialize Photos Hash Map for Representatives
+            repIdsToPhotos = new HashMap<>();
+
+            for (int i = 0; i < numRepsInView; i++) {
+                new RetrieveRepresentativePhoto().execute(i);
+            }
+
+            if (repIdsToTweetIds.size() == numRepsInView) {
                 onRepresentativeInfoReceived();
+            }
+        }
+    }
+
+    private class RetrieveRepresentativePhoto extends AsyncTask<Integer, Void, Bitmap> {
+
+        private int currentRepId;
+
+        protected void onPreExecute() {
+
+        }
+
+        protected Bitmap doInBackground(Integer... params) {
+            try {
+                currentRepId = params[0];
+                URL url = new URL(repsToIds.get(currentRepId).getImageQueryUrl());
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                try {
+                    InputStream imageAsStream = urlConnection.getInputStream();
+                    Bitmap repPhoto = BitmapFactory.decodeStream(imageAsStream);
+                    return repPhoto;
+                } finally {
+                    urlConnection.disconnect();
+                }
+
+            } catch (Exception e) {
+                Log.e("Unable to get Reps", e.getMessage(), e);
+                return null;
+            }
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            if (result == null) {
+                repIdsToPhotos.put(currentRepId, null);
+            } else {
+                repIdsToPhotos.put(currentRepId, result);
+            }
+
+            if (repIdsToPhotos.size() == numRepsInView && repIdsToTweetIds.size() ==
+                    numRepsInView) {
+                retrievalServicesFinished();
             }
         }
     }

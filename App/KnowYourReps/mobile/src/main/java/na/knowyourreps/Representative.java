@@ -1,5 +1,6 @@
 package na.knowyourreps;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import com.twitter.sdk.android.core.models.Tweet;
@@ -10,7 +11,7 @@ import com.twitter.sdk.android.core.models.Tweet;
 public class Representative {
     public Representative(String name, String email, String website, String governmentSeat,
                           String party, String endOfTerm, String twitterId,
-                          String image, String bioguideId) {
+                          String imageQueryUrl, String bioguideId) {
         this.name = name;
         this.email = email;
         this.website = website;
@@ -18,7 +19,7 @@ public class Representative {
         this.endOfTerm = endOfTerm;
         this.twitterId = twitterId;
         this.party = party;
-        this.image = image;
+        this.imageQueryUrl= imageQueryUrl;
         this.bioguideId = bioguideId;
     }
 
@@ -29,7 +30,8 @@ public class Representative {
     private String endOfTerm;
     private String twitterId;
     private String party;
-    private String image;
+    private Bitmap image;
+    private String imageQueryUrl;
     private String bioguideId;
     private Long mostRecentTweetId;
     private Tweet mostRecentTweet;
@@ -55,8 +57,11 @@ public class Representative {
     public String getTwitterId() {
         return this.twitterId;
     }
-    public String getImage() {
+    public Bitmap getImage() {
         return this.image;
+    }
+    public String getImageQueryUrl() {
+        return this.imageQueryUrl;
     }
     public String getBioguideId() {
         return this.bioguideId;
@@ -73,6 +78,9 @@ public class Representative {
     public void setMostRecentTweet(Tweet tweet) {
         mostRecentTweet = tweet;
     }
+    public void setImage(Bitmap img) {
+        this.image = img;
+    }
 
     //Bundling Method
 
@@ -82,8 +90,8 @@ public class Representative {
         b.putString("governmentSeat", governmentSeat);
         b.putString("endOfTerm", endOfTerm);
         b.putString("party", party);
-        b.putString("image", image);
         b.putString("bioguideId", bioguideId);
+        b.putString("imageQueryUrl", imageQueryUrl);
         return b;
     }
 }

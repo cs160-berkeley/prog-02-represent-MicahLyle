@@ -77,7 +77,7 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
 
         // TODO: Set the correct Images
 
-        holder.image.setImageResource(R.drawable.boxer_image);
+        holder.image.setImageBitmap(rep.getImage());
 
         holder.image.setTag(position);
         repIdMap.put(position, rep);
