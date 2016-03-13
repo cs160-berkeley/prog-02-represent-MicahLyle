@@ -34,9 +34,6 @@
         </service>
 
         <activity android:name=".VoteViewActivity"></activity>
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="BAAjgUEIHHx5uQ5QNe0J4ALwT" />
     </application>
 
 </manifest>
