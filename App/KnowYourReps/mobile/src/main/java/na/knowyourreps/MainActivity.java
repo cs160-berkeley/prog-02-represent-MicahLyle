@@ -36,8 +36,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private String mLatitudeText;
     private String mLongitudeText;
     private Boolean currentLocationEnabled = true;
-    private String geocodingApiUrlStart = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
+    private String geocodingApiUrlStart = "https://maps.googleapis.com/maps/api/geocode/json?";
     private String geocodingApiKey = "AIzaSyAUhOJD5_-pg9FYAq9bWuShwy7CBMsNgPY";
+    private String countyName = "Unknown County";
+    private int radioButtonSelection = 0;
+    private static final int SELECT_CURRENT_LOCATION = 1;
+    private static final int SELECT_ZIP_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +80,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     // Actually also thanks to
                     // http://www.androidauthority.com/use-remote-web-api-within-android-app-617869/
 
-                    new RetrieveCountyTask().execute();
+                    radioButtonSelection = SELECT_CURRENT_LOCATION;
+
+                    new RetrieveCountyTask().execute("location", "none");
 
                     zipCodeField.setVisibility(View.INVISIBLE);
                     repContinueButton.setVisibility(View.VISIBLE);
@@ -84,6 +90,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     locInfoField.setVisibility(View.VISIBLE);
 
                 } else if (zipSelectButton.isChecked()) {
+
+                    radioButtonSelection = SELECT_ZIP_CODE;
+
                     locInfoField.setVisibility(View.INVISIBLE);
                     locLoad.setVisibility(View.INVISIBLE);
                     repContinueButton.setVisibility(View.VISIBLE);
@@ -164,33 +173,27 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     public void startWatchVoteView(View view) {
         // Start up Watch View
-
-        RadioButton currentLocButton = (RadioButton) findViewById(R.id.useCurrentLocButton);
-        RadioButton zipLocButton = (RadioButton) findViewById(R.id.enterZipCodeButton);
-        TextView zipCodeField = (TextView) findViewById(R.id.enterZipCode);
-
-        Intent sendIntent = new Intent(this, PhoneToWatchService.class);
-        String sendOverBlueToothInfoString = "";
-
-        boolean validEntry = true;
-
-        if (currentLocButton.isChecked()) {
-            sendOverBlueToothInfoString += "94704";
-        } else {
-            if (zipCodeField.getText().length() == 5) {
-                sendOverBlueToothInfoString += zipCodeField.getText();
-            } else {
-                validEntry = false;
+        if (radioButtonSelection == SELECT_CURRENT_LOCATION) {
+            new RetrieveCountyTask().execute("location", "vote_view");
+        } else if (radioButtonSelection == SELECT_ZIP_CODE){
+            TextView zipCodeField = (TextView) findViewById(R.id.enterZipCode);
+            if (zipCodeField.getText().length() >= 5) {
+                Intent intent = new Intent(this, DisplayRepresentatives.class);
+                String zipcode = String.valueOf(zipCodeField.getText());
+                new RetrieveCountyTask().execute("zipcode", "vote_view", zipcode);
             }
-        }
-        if (validEntry) {
-            sendIntent.putExtra("MASTER_DATA_STRING", sendOverBlueToothInfoString);
-            sendIntent.putExtra("WATCH_ACTIVITY_SELECTION_STRING", "voteView");
-            startService(sendIntent);
         }
     }
 
-    private class RetrieveCountyTask extends AsyncTask<Void, Void, String> {
+    public void sendCountyToWatch() {
+        Intent sendIntent = new Intent(this, PhoneToWatchService.class);
+        sendIntent.putExtra("MASTER_DATA_STRING", countyName);
+        sendIntent.putExtra("WATCH_ACTIVITY_SELECTION_STRING", "voteView");
+    }
+
+    private class RetrieveCountyTask extends AsyncTask<String, Void, String> {
+
+        private String nextAction;
 
         protected void onPreExecute() {
             final ProgressBar locLoad = (ProgressBar) findViewById(R.id.locProgressBar);
@@ -199,11 +202,19 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             locInfoField.setText("");
         }
 
-        protected String doInBackground(Void... urls) {
-            if (mLastLocation != null && mLongitudeText != null && mLatitudeText != null)
+        protected String doInBackground(String... zipOrLoc) {
+            if ((mLastLocation != null && mLongitudeText != null && mLatitudeText != null) ||
+                    (!(zipOrLoc[0].equals("location"))))
                 try {
-                    URL url = new URL(geocodingApiUrlStart + mLatitudeText + "," +
-                        mLongitudeText + "&key=" + geocodingApiKey);
+                    URL url;
+                    nextAction = zipOrLoc[1];
+                    if (zipOrLoc[0].equals("location")) {
+                        url = new URL(geocodingApiUrlStart + "latlng=" + mLatitudeText + "," +
+                                mLongitudeText + "&key=" + geocodingApiKey);
+                    } else {
+                        url = new URL(geocodingApiUrlStart + "address=" + zipOrLoc[0] + "&region=" +
+                                "us&key=" + geocodingApiKey);
+                    }
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     try {
                         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
@@ -253,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                             break;
                         }
                     }
+                    countyName = responseString;
                     response = responseString;
                 } catch (JSONException e) {
                     response = "";  // Just give an empty response since location still worked
@@ -262,6 +274,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             final TextView locInfoField = (TextView) findViewById(R.id.locationInfoText);
             locLoad.setVisibility(View.GONE);
             locInfoField.setText(response);
+            if (nextAction.equals("vote_view")) {
+                sendCountyToWatch();
+            }
         }
     }
 }

@@ -28,6 +28,10 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     private PagerAdapter mPagerAdapter;
     private HashMap<Integer, String> nameHash;
     private HashMap<Integer, String> partyHash;
+    private HashMap<Integer, String> queryIdHash;
+    private HashMap<Integer, String> endOfTermHash;
+    private HashMap<Integer, String> seatHash;
+    private HashMap<Integer, String> bioGuideIdHash;
 
 
     @Override
@@ -54,13 +58,25 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         NUM_PAGES = Integer.parseInt(splitString[0]);
         List<String> iterateThroughRepInfo = Arrays.asList(splitString);
         int parityAndPositionNumber = 0;
-        for (String elem:iterateThroughRepInfo.subList(1, 2*NUM_PAGES+1)) {
-            if (parityAndPositionNumber % 2 == 0) {
-                nameHash.put(parityAndPositionNumber/2, elem);
-            } else {
-                partyHash.put((parityAndPositionNumber-1)/2, elem);
+        int locationNumber = 0;
+        for (String elem:iterateThroughRepInfo.subList(1, 6*NUM_PAGES+1)) {
+            if (parityAndPositionNumber % 6 == 0) {
+                nameHash.put(locationNumber, elem);
+            } else if (parityAndPositionNumber %6 == 1) {
+                partyHash.put(locationNumber, elem);
+            } else if (parityAndPositionNumber %6 == 2) {
+                endOfTermHash.put(locationNumber, elem);
+            } else if (parityAndPositionNumber %6 == 3) {
+                seatHash.put(locationNumber, elem);
+            } else if (parityAndPositionNumber %6 == 4) {
+                bioGuideIdHash.put(locationNumber, elem);
+            } else if (parityAndPositionNumber %6 == 5) {
+                queryIdHash.put(locationNumber, elem);
             }
             parityAndPositionNumber += 1;
+            if (parityAndPositionNumber % 6 == 0) {
+                locationNumber += 1;
+            }
         }
     }
 
@@ -79,6 +95,9 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
             currentViewBundle.putString("name", nameHash.get(position));
             currentViewBundle.putString("party", partyHash.get(position));
             currentViewBundle.putString("position", Integer.toString(position));
+            currentViewBundle.putString("endOfTerm", endOfTermHash.get(position));
+            currentViewBundle.putString("seat", seatHash.get(position));
+            currentViewBundle.putString("query", queryIdHash.get(position));
             Fragment currentPageFragment = new ScreenSlidePageFragment();
             currentPageFragment.setArguments(currentViewBundle);
             return currentPageFragment;
@@ -93,8 +112,22 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     public void openPhoneDetailedView(View view) {
         Intent intent = new Intent(this, WatchToPhoneService.class);
         Button clickedButton = (Button) view.findViewById(R.id.goToPhoneDetailedViewButton);
+        String openDetailedInfoStr = "";
         String buttonNumberStr = Integer.toString((int) clickedButton.getTag());
-        intent.putExtra("randomGeneratedZipCode", buttonNumberStr);
+        openDetailedInfoStr += buttonNumberStr;     // Send position over first
+        openDetailedInfoStr += "__";
+        openDetailedInfoStr += nameHash.get(clickedButton.getTag());
+        openDetailedInfoStr += "__";
+        openDetailedInfoStr += partyHash.get(clickedButton.getTag());
+        openDetailedInfoStr += "__";
+        openDetailedInfoStr += endOfTermHash.get(clickedButton.getTag());
+        openDetailedInfoStr += "__";
+        openDetailedInfoStr += seatHash.get(clickedButton.getTag());
+        openDetailedInfoStr += "__";
+        openDetailedInfoStr += bioGuideIdHash.get(clickedButton.getTag());
+        openDetailedInfoStr += "__";
+        openDetailedInfoStr += queryIdHash.get(clickedButton.getTag());
+        intent.putExtra("watch_to_phone_detailed", openDetailedInfoStr);
         startService(intent);
     }
 }

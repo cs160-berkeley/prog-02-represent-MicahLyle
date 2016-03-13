@@ -20,11 +20,6 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
-    private static final String TWITTER_KEY = "micah.lyle@berkeley.edu";
-    private static final String TWITTER_SECRET = "squirrel45jesus";
-
-
     private SensorManager mSensorManager;
     private ShakeEventListener mSensorListener;
 
@@ -42,7 +37,7 @@ public class MainActivity extends Activity {
             public void onShake() {
                 Intent intent = new Intent(getBaseContext(), VoteViewActivity.class );
                 //you need to add this flag since you're starting a new activity from a service
-                intent.putExtra("shakeSelection", "dummy_string");
+                intent.putExtra("shake_selection", "dummy_string");
                 Log.d("T", "about to start watch VoteViewActivity because a shaking has occured :D");
                 Toast.makeText(MainActivity.this, "Shake!", Toast.LENGTH_SHORT).show();
                 startActivity(intent);

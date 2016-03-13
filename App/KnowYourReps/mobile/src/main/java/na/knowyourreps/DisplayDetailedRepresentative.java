@@ -62,13 +62,27 @@ public class DisplayDetailedRepresentative extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle receivedBundle = intent.getExtras();
 
-        name = receivedBundle.getString("name");
-        seat = receivedBundle.getString("seat");
-        endOfTerm = receivedBundle.getString("endOfTerm");
-        party = receivedBundle.getString("party");
-        bioguideId = receivedBundle.getString("bioguideId");
+        String imageQueryUrl;
 
-        String imageQueryUrl = receivedBundle.getString("imageQueryUrl");
+        if (receivedBundle.getString("from_watch_detailed_info") != null) {
+            String detailedInfo = receivedBundle.getString("from_watch_detailed_info");
+            String[] splitDetailedInfo = detailedInfo.split("__");
+            name = splitDetailedInfo[1];
+            party = splitDetailedInfo[2];
+            endOfTerm = splitDetailedInfo[3];
+            seat = splitDetailedInfo[4];
+            bioguideId = splitDetailedInfo[5];
+            imageQueryUrl = splitDetailedInfo[6];
+
+        } else {
+            name = receivedBundle.getString("name");
+            seat = receivedBundle.getString("seat");
+            endOfTerm = receivedBundle.getString("endOfTerm");
+            party = receivedBundle.getString("party");
+            bioguideId = receivedBundle.getString("bioguideId");
+            imageQueryUrl = receivedBundle.getString("imageQueryUrl");
+        }
+
         String committeesQueryUrl = "https://congress.api.sunlightfoundation.com/committees?member_ids=" +
                 bioguideId + "&apikey=" + sunlightApiKey;
         String billsQueryUrl = "https://congress.api.sunlightfoundation.com/bills?sponsor_id=" +

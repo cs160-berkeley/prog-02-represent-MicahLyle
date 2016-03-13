@@ -24,12 +24,10 @@ public class PhoneListenerService extends WearableListenerService {
         if( messageEvent.getPath().equalsIgnoreCase(REP_POSITION_PATH) ) {
 
             // Value contains the String we sent over in WatchToPhoneService
-            String repPosition = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-            Intent detailedViewIntent = new Intent(this, DisplayRepresentatives.class);
-
-            // Thanks to http://stackoverflow.com/questions/18672482/how-to-pass-intent-with-extras-to-an-already-running-activity
-            detailedViewIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            detailedViewIntent.putExtra("position", repPosition);
+            String detailedInfo = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            Intent detailedViewIntent = new Intent(this, DisplayDetailedRepresentative.class);
+            detailedViewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            detailedViewIntent.putExtra("from_watch_detailed_info", detailedInfo);
             startActivity(detailedViewIntent);
 
             // Lol... @below text
@@ -44,7 +42,8 @@ public class PhoneListenerService extends WearableListenerService {
             Intent detailedViewIntent = new Intent(this, MainActivity.class);
             detailedViewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             detailedViewIntent.putExtra("zip_from_watch", zipCode);
-            startActivity(detailedViewIntent);
+            // This was crashing stuff before
+            //startActivity(detailedViewIntent);
         } else {
             super.onMessageReceived( messageEvent );
         }

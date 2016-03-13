@@ -128,6 +128,13 @@ public class DisplayRepresentatives extends AppCompatActivity {
             sendOverBlueToothInfoString += "__";
             sendOverBlueToothInfoString += rep.getParty();
             sendOverBlueToothInfoString += "__";
+            sendOverBlueToothInfoString += rep.getEndOfTerm();
+            sendOverBlueToothInfoString += "__";
+            sendOverBlueToothInfoString += rep.getGovernmentSeat();
+            sendOverBlueToothInfoString += "__";
+            sendOverBlueToothInfoString += rep.getBioguideId();
+            sendOverBlueToothInfoString += "__";
+            sendOverBlueToothInfoString += rep.getImageQueryUrl();
         }
         sendIntent.putExtra("MASTER_DATA_STRING", sendOverBlueToothInfoString);
         sendIntent.putExtra("WATCH_ACTIVITY_SELECTION_STRING", "repView");
