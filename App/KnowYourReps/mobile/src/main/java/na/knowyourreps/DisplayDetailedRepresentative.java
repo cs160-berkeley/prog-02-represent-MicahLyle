@@ -15,6 +15,18 @@ import java.util.List;
 
 public class DisplayDetailedRepresentative extends AppCompatActivity {
 
+    private final int MAX_COMMITTEE_LENGTH = 10;
+    private final int MAX_BILLS_LENGTH = 5;
+
+    private String name;
+    private String seat;
+    private String endOfTerm;
+    private String party;
+    private String image;
+    private String bioguideId;
+    private String committees[];
+    private String recentBillsSponsored[];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,37 +35,18 @@ public class DisplayDetailedRepresentative extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle receivedBundle = intent.getExtras();
 
-        String name = receivedBundle.getString("name");
-        String image = receivedBundle.getString("image");
-        String party = receivedBundle.getString("party");
-        String endOfTerm = receivedBundle.getString("endOfTerm");
-        String[] committees = receivedBundle.getStringArray("committees");
-        String[] recentBillsSponsored = receivedBundle.getStringArray("recentBillsSponsored");
+        name = receivedBundle.getString("name");
+        seat = receivedBundle.getString("seat");
+        endOfTerm = receivedBundle.getString("endOfTerm");
+        party = receivedBundle.getString("party");
+        image = receivedBundle.getString("image");
+        bioguideId = receivedBundle.getString("bioguideId");
+    }
 
-        /* This should be commented out once the intent and bundling is working :D
-        String name = "Diane Feinstein";
-        String image = "feinstein_image.PNG";
-        String party = "Party: Democrat";
-        String endOfTerm = "End of Term: January 3, 2019";
-        String[] committees = {"Appropriations Committee", "Select Committee" +
-                " on Intelligence", "Judiciary Committee", "Rules and Administration Committee"};
-        String[] recentBillsSponsored = {"S. 2568: California Desert Conservation, Off-Road Recreation," +
-                " and Renewable Energy Act", "S. 2552: Interstate Threats Clarification Act," +
-                " of 2016", "S. 2533: California Long-Term Provisions for Water Supply and" +
-                " Short-Term Provisions for Emergency Drought Relief ..."};*/
-
+    private void setupDetailedView() {
         TextView detailedRepName = (TextView) findViewById(R.id.detailedRepName);
         detailedRepName.setText(name);
-
         ImageView detailedRepImage = (ImageView) findViewById(R.id.detailedRepImage);
-        String imageLocation = "drawable/" + image;
-        if (imageLocation.equals("drawable/boxer_image.PNG")) {
-            detailedRepImage.setImageResource(R.drawable.boxer_image);
-        } else if (imageLocation.equals("drawable/feinstein_image.PNG")) {
-            detailedRepImage.setImageResource(R.drawable.feinstein_image);
-        } else if (imageLocation.equals("drawable/lee_image.PNG")) {
-            detailedRepImage.setImageResource(R.drawable.lee_image);
-        }
 
         String[] partyAndTerm = {party, endOfTerm};
         final String committeesTitle = "Committees";
@@ -71,6 +64,5 @@ public class DisplayDetailedRepresentative extends AppCompatActivity {
         ExpandableListView committeesAndBillsListView = (ExpandableListView) findViewById(R.id.committeeAndBillsListView);
         CustomExpandableListAdapter committeesAndBillsAdapter = new CustomExpandableListAdapter(this, parentsList, childHash);
         committeesAndBillsListView.setAdapter(committeesAndBillsAdapter);
-
     }
 }

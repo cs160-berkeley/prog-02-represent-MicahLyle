@@ -97,11 +97,9 @@ public class RepresentativeListAdapter extends ArrayAdapter<Representative> {
         // Set party and chamber texts
         holder.seat.setText(rep.getGovernmentSeat());
         String partyText = rep.getParty();
-        String viewedPartyText = " (" + partyText + ")";
-        holder.party.setText(viewedPartyText);
-        if (partyText.equals('R')) {
+        if (partyText.equals("R")) {
             holder.party.setTextColor(ContextCompat.getColor(context, R.color.republicanColor));
-        } else if (partyText.equals('D')) {
+        } else if (partyText.equals("D")) {
             holder.party.setTextColor(ContextCompat.getColor(context, R.color.democratColor));
         } else {
             holder.party.setTextColor(ContextCompat.getColor(context, R.color.otherPartyColor));

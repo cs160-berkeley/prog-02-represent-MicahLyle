@@ -9,16 +9,13 @@ import com.twitter.sdk.android.core.models.Tweet;
  */
 public class Representative {
     public Representative(String name, String email, String website, String governmentSeat,
-                          String party, String endOfTerm, String[] committees,
-                          String[] recentBillsSponsored, String twitterId,
+                          String party, String endOfTerm, String twitterId,
                           String image, String bioguideId) {
         this.name = name;
         this.email = email;
         this.website = website;
         this.governmentSeat = governmentSeat;
         this.endOfTerm = endOfTerm;
-        this.committees = committees;
-        this.recentBillsSponsored = recentBillsSponsored;
         this.twitterId = twitterId;
         this.party = party;
         this.image = image;
@@ -30,8 +27,6 @@ public class Representative {
     private String website;
     private String governmentSeat;
     private String endOfTerm;
-    private String[] committees;
-    private String[] recentBillsSponsored;
     private String twitterId;
     private String party;
     private String image;
@@ -56,12 +51,6 @@ public class Representative {
     }
     public String getEndOfTerm() {
         return this.endOfTerm;
-    }
-    public String[] getCommittees() {
-        return this.committees;
-    }
-    public String[] getRecentBillsSponsored() {
-        return this.recentBillsSponsored;
     }
     public String getTwitterId() {
         return this.twitterId;
@@ -92,8 +81,6 @@ public class Representative {
         b.putString("name", name);
         b.putString("governmentSeat", governmentSeat);
         b.putString("endOfTerm", endOfTerm);
-        b.putStringArray("committees", committees);
-        b.putStringArray("recentBillsSponsored", recentBillsSponsored);
         b.putString("party", party);
         b.putString("image", image);
         b.putString("bioguideId", bioguideId);

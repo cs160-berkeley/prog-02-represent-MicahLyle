@@ -52,14 +52,9 @@ public class DisplayRepresentatives extends AppCompatActivity {
     private HashMap<Integer, Tweet> repsToTweets;
     private String sunlightPrecise = "https://congress.api.sunlightfoundation.com/legislators/locate?latitude=";
     private String sunlightZip = "https://congress.api.sunlightfoundation.com/legislators/locate?zip=";
+    private String sunlightApiKey = "2895ee1a05b74c64bb0bead86028d3ea";
     private String sunlightStart;
     private String sunlightAppend;
-    private String sunlightApiKey = "2895ee1a05b74c64bb0bead86028d3ea";
-    private final int MAX_COMMITTEE_LENGTH = 10;
-    private final int MAX_BILLS_LENGTH = 5;
-    private String latitude;
-    private String longitude;
-    private String zipcode;
     private static final int MAX_COUNTDOWN_TIMER_ITERATIONS = 100;
 
     @Override
@@ -70,13 +65,13 @@ public class DisplayRepresentatives extends AppCompatActivity {
 
         Bundle receivedBundle = getIntent().getExtras();
         if (receivedBundle.getString("source").equals("phone_location")) {
-            latitude = receivedBundle.getString("latitude_from_phone_main");
-            longitude = receivedBundle.getString("longitude_from_phone_main");
+            String latitude = receivedBundle.getString("latitude_from_phone_main");
+            String longitude = receivedBundle.getString("longitude_from_phone_main");
             sunlightStart = sunlightPrecise;
             sunlightAppend = latitude +"&"+ "longitude=" + longitude + "&apikey=" + sunlightApiKey;
             // TODO: Get Zip Codes to work when rendering representatives
         } else if (receivedBundle.getString("source").equals("phone_zipcode")) {
-            zipcode = receivedBundle.getString("zipcode_from_phone_main");
+            String zipcode = receivedBundle.getString("zipcode_from_phone_main");
             sunlightStart = sunlightZip;
             sunlightAppend = zipcode + "&apikey=" + sunlightApiKey;
         }
@@ -261,8 +256,6 @@ public class DisplayRepresentatives extends AppCompatActivity {
                     JSONObject currentRep;
 
                     repList = new ArrayList<Representative>();
-                    String[] currentRepCommittees = new String[MAX_COMMITTEE_LENGTH];
-                    String[] currentRepBills = new String[MAX_BILLS_LENGTH];
                     String currentRepTwitterId = "";
                     String currentRepParty = "";
                     String currentRepName = "";
@@ -288,8 +281,8 @@ public class DisplayRepresentatives extends AppCompatActivity {
 
                         repList.add(new Representative(currentRepName, currentRepEmail,
                                 currentRepWebsite, currentRepGovernmentSeat, currentRepParty,
-                                currentRepEndOfTerm, currentRepCommittees, currentRepBills,
-                                currentRepTwitterId, currentRepImage, currentRepBioguideId));
+                                currentRepEndOfTerm, currentRepTwitterId, currentRepImage,
+                                currentRepBioguideId));
                     }
 
                     // Add to this class's hash map in case of watch press
