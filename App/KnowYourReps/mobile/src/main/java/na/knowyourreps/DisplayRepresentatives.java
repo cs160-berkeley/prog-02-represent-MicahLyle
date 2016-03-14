@@ -440,18 +440,29 @@ public class DisplayRepresentatives extends AppCompatActivity {
         }
 
         protected void onPostExecute(String response) {
+            String latitude = null;
+            String longitude = null;
             if (response == null) {
                 response = getString(R.string.loc_error_message_1);
             } else {
                 try {
                     JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
                     JSONArray resultsArray = (JSONArray) object.get("results");
-                    JSONObject resultComponent;
+                    JSONObject resultComponent = (JSONObject) resultsArray.get(0);
+                    JSONObject geometry = (JSONObject) resultComponent.get("geometry");
+                    JSONObject location = (JSONObject) geometry.get("location");
+                    latitude = Double.toString(((Double) location.get("lat")));
+                    longitude = Double.toString(((Double) location.get("lng")));
                     for (int i = 0; i < resultsArray.length(); i++)
                         resultComponent = (JSONObject) resultsArray.get(i);
                 } catch (JSONException e) {
                     response = "";  // Just give an empty response since location still worked
                 }
+            }
+            if ((latitude != null) && (longitude != null)) {
+                sunlightStart = sunlightPrecise;
+                sunlightAppend = latitude +"&"+ "longitude=" + longitude + "&apikey=" + sunlightApiKey;
+                new RetrieveRepresentativeInfo().execute();
             }
         }
     }
