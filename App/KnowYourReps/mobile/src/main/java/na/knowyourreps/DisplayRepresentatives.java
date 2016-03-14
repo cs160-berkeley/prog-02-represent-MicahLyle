@@ -61,7 +61,6 @@ public class DisplayRepresentatives extends AppCompatActivity {
     private String geocodingApiKey = "AIzaSyAUhOJD5_-pg9FYAq9bWuShwy7CBMsNgPY";
     private String sunlightStart;
     private String sunlightAppend;
-    private static final int MAX_COUNTDOWN_TIMER_ITERATIONS = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

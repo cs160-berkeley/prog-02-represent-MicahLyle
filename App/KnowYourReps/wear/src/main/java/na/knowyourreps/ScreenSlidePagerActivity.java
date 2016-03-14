@@ -1,6 +1,9 @@
 package na.knowyourreps;
 
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -8,8 +11,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -33,6 +38,8 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     private HashMap<Integer, String> seatHash;
     private HashMap<Integer, String> bioGuideIdHash;
 
+    private SensorManager mSensorManager;
+    private ShakeEventListener mSensorListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +58,24 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide_pager);
+
+        // ShakeDetector initialization
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensorListener = new ShakeEventListener();
+
+        mSensorListener.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
+
+            public void onShake() {
+                Intent intent = new Intent(getBaseContext(), VoteViewActivity.class);
+                //you need to add this flag since you're starting a new activity from a service
+                intent.putExtra("randomCounty", "true");
+                intent.putExtra("county", "RANDOM_GENERATION");
+                Log.d("T", "about to start watch VoteViewActivity because a shaking has occured :D");
+                Toast.makeText(ScreenSlidePagerActivity.this, "Shake!", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
+
         // Instantiate a ViewPager and a PagerAdapter
         mPager = (ViewPager) findViewById(R.id.viewpager_reps);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
@@ -133,6 +158,20 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         openDetailedInfoStr += queryIdHash.get(clickedButton.getTag());
         intent.putExtra("watch_to_phone_detailed", openDetailedInfoStr);
         startService(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSensorManager.registerListener(mSensorListener,
+                mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    protected void onPause() {
+        mSensorManager.unregisterListener(mSensorListener);
+        super.onPause();
     }
 }
 

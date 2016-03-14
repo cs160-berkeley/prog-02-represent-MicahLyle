@@ -64,4 +64,15 @@ tools:deviceIds="wear_round">
         android:layout_below="@id/obamaName"
         android:text="@string/obama_percent" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See Reps"
+        android:id="@+id/updateRepsButton"
+        android:onClick="updateReps"
+        android:background="#32f473"
+        android:layout_below="@+id/obamaPercent"
+        android:layout_marginTop="7dp"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

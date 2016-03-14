@@ -1,11 +1,16 @@
 package na.knowyourreps;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,10 +27,32 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class VoteViewActivity extends Activity {
 
+    private String county;
+
+    private SensorManager mSensorManager;
+    private ShakeEventListener mSensorListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote_view);
+
+        // ShakeDetector initialization
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensorListener = new ShakeEventListener();
+
+        mSensorListener.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
+
+            public void onShake() {
+                Intent intent = new Intent(getBaseContext(), VoteViewActivity.class);
+                //you need to add this flag since you're starting a new activity from a service
+                intent.putExtra("randomCounty", "true");
+                intent.putExtra("county", "RANDOM_GENERATION");
+                Log.d("T", "about to start watch VoteViewActivity because a shaking has occured :D");
+                Toast.makeText(VoteViewActivity.this, "Shake!", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
 
         TextView countyName = (TextView) findViewById(R.id.countyName);
         TextView romneyPercent = (TextView) findViewById(R.id.romneyPercent);
@@ -34,19 +61,13 @@ public class VoteViewActivity extends Activity {
         Bundle receivedBundle = getIntent().getExtras();
 
         String countyVoteInfo = "";     // For JSON parsing later
-        String county = "";             // County Name (grabbed later)
+        county = "";             // County Name (grabbed later)
         double romneyVote = 0;        // Romney Vote (grabbed later)
         double obamaVote = 0;        // Obama Vote (grabbed later)
 
         if (receivedBundle.getString("randomCounty") != null) {
 
             county = selectRandomCounty();
-
-            // Send County to Phone
-            Intent intent = new Intent(this, WatchToPhoneService.class);
-            intent.putExtra("randomlyGeneratedCounty", county);
-            intent.putExtra("shake_selection", "true");
-            startService(intent);
         }
 
         if (receivedBundle.getString("county") != null) {
@@ -119,7 +140,28 @@ public class VoteViewActivity extends Activity {
         }
 
         int randomLocationNum = ThreadLocalRandom.current().nextInt(0, numCounties);
-        String randomCounty = countiesMap.get(randomLocationNum);
-        return randomCounty;
+        return countiesMap.get(randomLocationNum);
+    }
+
+    public void updateReps(View view) {
+        // Send County to Phone
+        Intent intent = new Intent(this, WatchToPhoneService.class);
+        intent.putExtra("randomlyGeneratedCounty", county);
+        intent.putExtra("shake_selection", "true");
+        startService(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSensorManager.registerListener(mSensorListener,
+                mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    protected void onPause() {
+        mSensorManager.unregisterListener(mSensorListener);
+        super.onPause();
     }
 }
