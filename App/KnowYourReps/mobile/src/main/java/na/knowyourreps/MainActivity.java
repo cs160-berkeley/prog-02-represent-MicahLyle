@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
                     radioButtonSelection = SELECT_CURRENT_LOCATION;
 
+                    onConnected(new Bundle());
+
                     new RetrieveCountyTask().execute("location", "none");
 
                     zipCodeField.setVisibility(View.INVISIBLE);
