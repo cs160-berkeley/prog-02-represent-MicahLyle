@@ -41,6 +41,9 @@ import io.fabric.sdk.android.Fabric;
 
 public class DisplayRepresentatives extends AppCompatActivity {
 
+    //TODO: Extension: Get the twitter views to render nicely and correctly, and see if I can make scrolling smoother
+    //TODO: Extension: Maybe read that stack overflow post and try clearing all watch activities when stuff is sent over from representatives list view
+
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
     private static final String TWITTER_KEY = "BAAjgUEIHHx5uQ5QNe0J4ALwT";
     private static final String TWITTER_SECRET = "WjawZD04CYeOGJFyusv6GEyH18z1kRAgBsQtrkXnUQzbzBtz8K";

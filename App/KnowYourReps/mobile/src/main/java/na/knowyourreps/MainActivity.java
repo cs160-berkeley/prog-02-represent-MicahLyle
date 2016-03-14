@@ -299,7 +299,3 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }
     }
 }
-
-//TODO: Get Location from Zip Code so that watch can receive a county name very consistently
-//TODO: Extension: Get the twitter views to render nicely and correctly, and see if I can make scrolling smoother
-//TODO: Extension: Maybe read that stack overflow post and try clearing all watch activities when stuff is sent over from representatives list view

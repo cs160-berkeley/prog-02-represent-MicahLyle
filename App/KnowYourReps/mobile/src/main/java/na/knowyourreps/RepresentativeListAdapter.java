@@ -1,6 +1,5 @@
 package na.knowyourreps;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.twitter.sdk.android.tweetui.CompactTweetView;
-import com.twitter.sdk.android.tweetui.TweetView;
 
 import java.util.HashMap;
 import java.util.List;

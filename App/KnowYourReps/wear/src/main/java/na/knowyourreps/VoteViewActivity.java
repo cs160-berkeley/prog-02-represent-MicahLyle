@@ -3,7 +3,6 @@ package na.knowyourreps;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -12,17 +11,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class VoteViewActivity extends Activity {
