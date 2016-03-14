@@ -62,8 +62,6 @@ public class VoteViewActivity extends Activity {
 
         String countyVoteInfo = "";     // For JSON parsing later
         county = "";             // County Name (grabbed later)
-        double romneyVote = 0;        // Romney Vote (grabbed later)
-        double obamaVote = 0;        // Obama Vote (grabbed later)
 
         if (receivedBundle.getString("randomCounty") != null) {
 
@@ -100,11 +98,29 @@ public class VoteViewActivity extends Activity {
                 }
 
                 // Parse the JSON Vote View File
+
+                // Dealing with JSON parsing sometimes being double and sometimes being int
+                double doubleRomneyVote = 0;
+                double doubleObamaVote = 0;
+                int intRomneyVote = 0;
+                int intObamaVote = 0;
                 try {
                     JSONObject voteViewData = (JSONObject) new JSONTokener(countyVoteInfo).nextValue();
                     JSONObject countyVote = (JSONObject) voteViewData.get(county);
-                    romneyVote = (Double) countyVote.get("romney");
-                    obamaVote = (Double) countyVote.get("obama");
+                    if ((countyVote.get("romney").getClass().getName()).equals("java.lang.Double")) {
+                        doubleRomneyVote = (Double) countyVote.get("romney");
+                        intRomneyVote = -1;
+                    } else {
+                        intRomneyVote = (Integer) countyVote.get("romney");
+                        doubleRomneyVote = -1.0;
+                    }
+                    if ((countyVote.get("obama").getClass().getName()).equals("java.lang.Double")) {
+                        doubleObamaVote = (Double) countyVote.get("obama");
+                        intObamaVote = -1;
+                    } else {
+                        intObamaVote = (Integer) countyVote.get("obama");
+                        doubleObamaVote = -1.0;
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -114,8 +130,16 @@ public class VoteViewActivity extends Activity {
                 obamaPercent.setVisibility(View.VISIBLE);
 
                 // Display the Votes
-                romneyPercent.setText(Double.toString(romneyVote));
-                obamaPercent.setText(Double.toString(obamaVote));
+                if (doubleRomneyVote < 0.0) {
+                    romneyPercent.setText(Integer.toString(intRomneyVote));
+                } else {
+                    romneyPercent.setText(Double.toString(doubleRomneyVote));
+                }
+                if (doubleObamaVote < 0.0) {
+                    obamaPercent.setText(Integer.toString(intObamaVote));
+                } else {
+                    obamaPercent.setText(Double.toString(doubleObamaVote));
+                }
             }
         }
     }

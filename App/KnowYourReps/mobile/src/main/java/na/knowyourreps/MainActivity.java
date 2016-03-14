@@ -195,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private class RetrieveCountyTask extends AsyncTask<String, Void, String> {
 
         private String nextAction;
+        private boolean isZipCode = false;
 
         protected void onPreExecute() {
             final ProgressBar locLoad = (ProgressBar) findViewById(R.id.locProgressBar);
@@ -204,15 +205,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }
 
         protected String doInBackground(String... zipOrLoc) {
-            if ((mLastLocation != null && mLongitudeText != null && mLatitudeText != null) ||
+            if ((mLongitudeText != null && mLatitudeText != null) ||
                     (!(zipOrLoc[0].equals("location"))))
                 try {
                     URL url;
                     nextAction = zipOrLoc[1];
                     if (zipOrLoc[0].equals("location")) {
+                        isZipCode = false;
                         url = new URL(geocodingApiUrlStart + "latlng=" + mLatitudeText + "," +
                                 mLongitudeText + "&key=" + geocodingApiKey);
                     } else {
+                        isZipCode = true;
                         url = new URL(geocodingApiUrlStart + "address=" + zipOrLoc[2] + "&region=" +
                                 "us&key=" + geocodingApiKey);
                     }
@@ -245,31 +248,43 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 response = getString(R.string.loc_error_message_1);
             } else {
                 try {
-                    JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
-                    JSONArray resultsArray = (JSONArray) object.get("results");
-                    JSONObject addressComponents = (JSONObject) resultsArray.get(0);
-                    JSONArray componentsArray = (JSONArray) addressComponents.get("address_components");
-                    String typeString;
-                    String stateString = null;
-                    String countyString = null;
-                    for (int i = 0; i < componentsArray.length(); i++) {
-                        JSONObject countyComponents = (JSONObject) componentsArray.get(i);
-                        JSONArray typesArray = (JSONArray) countyComponents.get("types");
-                        for (int j = 0;j < typesArray.length(); j++) {
-                            typeString = (String) typesArray.get(j);
-                            if (typeString.equals("administrative_area_level_2")) {
-                                countyString = (String) countyComponents.get("long_name");
+                    if (isZipCode) {
+                        JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
+                        JSONArray resultsArray = (JSONArray) object.get("results");
+                        JSONObject resultComponent = (JSONObject) resultsArray.get(0);
+                        JSONObject geometry = (JSONObject) resultComponent.get("geometry");
+                        JSONObject location = (JSONObject) geometry.get("location");
+                        mLatitudeText = Double.toString(((Double) location.get("lat")));
+                        mLongitudeText = Double.toString(((Double) location.get("lng")));
+                        new RetrieveCountyTask().execute("location", nextAction);
+                        return;
+                    } else {
+                        JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
+                        JSONArray resultsArray = (JSONArray) object.get("results");
+                        JSONObject addressComponents = (JSONObject) resultsArray.get(0);
+                        JSONArray componentsArray = (JSONArray) addressComponents.get("address_components");
+                        String typeString;
+                        String stateString = null;
+                        String countyString = null;
+                        for (int i = 0; i < componentsArray.length(); i++) {
+                            JSONObject countyComponents = (JSONObject) componentsArray.get(i);
+                            JSONArray typesArray = (JSONArray) countyComponents.get("types");
+                            for (int j = 0;j < typesArray.length(); j++) {
+                                typeString = (String) typesArray.get(j);
+                                if (typeString.equals("administrative_area_level_2")) {
+                                    countyString = (String) countyComponents.get("long_name");
+                                }
+                                if (typeString.equals("administrative_area_level_1")) {
+                                    stateString = (String) countyComponents.get("short_name");
+                                }
                             }
-                            if (typeString.equals("administrative_area_level_1")) {
-                                stateString = (String) countyComponents.get("short_name");
+                            if (countyString != null && stateString != null) {
+                                break;
                             }
                         }
-                        if (countyString != null && stateString != null) {
-                            break;
-                        }
+                        countyName = countyString + ", " + stateString;
+                        response = countyName;
                     }
-                    countyName = countyString + ", " + stateString;
-                    response = countyName;
                 } catch (JSONException e) {
                     response = "";  // Just give an empty response since location still worked
                 }
@@ -285,10 +300,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 }
 
-//TODO: Parse JSON County Names on Watch
-//TODO: Randomly Select JSON County Names on Watch
-//TODO: Use Randomly Generated County Name from Watch to get Representatives on Phone
-//TODO: Make sure everything is running smoothly and it's doing everything it's supposed to
-//TODO: Change the Location of the Watch Shaker
-//TODO: If time, read that stack overflow post and try clearing all watch activities when stuff is sent over from representatives list view
-//TODO: Make a button on the vote view that starts up the representative view
+//TODO: Get Location from Zip Code so that watch can receive a county name very consistently
+//TODO: Extension: Get the twitter views to render nicely and correctly, and see if I can make scrolling smoother
+//TODO: Extension: Maybe read that stack overflow post and try clearing all watch activities when stuff is sent over from representatives list view

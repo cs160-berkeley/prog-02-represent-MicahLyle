@@ -66,13 +66,13 @@ tools:deviceIds="wear_round">
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dip"
         android:text="See Reps"
         android:id="@+id/updateRepsButton"
         android:onClick="updateReps"
         android:background="#32f473"
+        android:layout_marginTop="25dp"
         android:layout_below="@+id/obamaPercent"
-        android:layout_marginTop="7dp"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

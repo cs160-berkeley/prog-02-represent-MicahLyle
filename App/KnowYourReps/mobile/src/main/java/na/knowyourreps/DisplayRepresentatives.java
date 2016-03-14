@@ -452,8 +452,6 @@ public class DisplayRepresentatives extends AppCompatActivity {
                     JSONObject location = (JSONObject) geometry.get("location");
                     latitude = Double.toString(((Double) location.get("lat")));
                     longitude = Double.toString(((Double) location.get("lng")));
-                    for (int i = 0; i < resultsArray.length(); i++)
-                        resultComponent = (JSONObject) resultsArray.get(i);
                 } catch (JSONException e) {
                     response = "";  // Just give an empty response since location still worked
                 }
